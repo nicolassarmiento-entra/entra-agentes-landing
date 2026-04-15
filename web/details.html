@@ -10,8 +10,416 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/utilities.css">
     <link rel="stylesheet" href="css/components.css">
+    <style>
+        .details-section {
+            padding-top: 8rem;
+            padding-bottom: 5rem;
+            min-height: 100vh;
+        }
+
+        .details-container {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Breadcrumb */
+        .details-breadcrumb {
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb-link {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .breadcrumb-link:hover {
+            color: #fff;
+        }
+
+        /* Header */
+        .details-header {
+            margin-bottom: 3rem;
+        }
+
+        .details-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            color: var(--on-surface);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .details-title { font-size: 3.5rem; }
+        }
+
+        .details-description {
+            font-size: 1.125rem;
+            color: var(--on-surface-variant);
+            line-height: 1.7;
+            max-width: 48rem;
+        }
+
+        /* Content Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @media (min-width: 1024px) {
+            .details-grid {
+                grid-template-columns: repeat(12, 1fr);
+            }
+        }
+
+        /* Left Column */
+        .details-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .details-info { grid-column: span 5; }
+        }
+
+        /* Platform Badge */
+        .details-platforms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .details-platform {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--surface-container-highest);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--on-surface);
+        }
+
+        .details-platform .material-symbols-outlined {
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        /* Deliverables Card */
+        .details-card {
+            background: rgba(28, 42, 65, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+        }
+
+        .details-card-title {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .deliverables-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .deliverable-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .deliverable-item .material-symbols-outlined {
+            color: var(--primary);
+            font-size: 1.25rem;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .deliverable-item span:last-child {
+            font-size: 0.875rem;
+            color: var(--on-surface);
+        }
+
+        /* CTA Buttons */
+        .details-ctas {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .details-ctas { flex-direction: row; }
+        }
+
+        .details-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .details-btn.primary {
+            background: var(--primary);
+            color: var(--on-primary);
+            flex: 1;
+        }
+
+        .details-btn.primary:hover {
+            filter: brightness(1.1);
+        }
+
+        .details-btn.secondary {
+            background: transparent;
+            color: var(--on-surface);
+            border: 1px solid var(--outline-variant);
+        }
+
+        .details-btn.secondary:hover {
+            background: var(--surface-bright);
+            border-color: var(--error);
+            color: var(--error);
+        }
+
+        .details-btn.secondary.active {
+            color: #ef4444;
+            border-color: #ef4444;
+        }
+
+        .details-btn.secondary.active .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .details-btn .material-symbols-outlined {
+            font-size: 1.25rem;
+        }
+
+        /* Testimonial */
+        .details-testimonial {
+            padding: 1.5rem;
+            border-left: 3px solid var(--primary);
+            background: var(--surface-container-low);
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+        }
+
+        .details-testimonial-text {
+            font-size: 0.875rem;
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 0.75rem;
+        }
+
+        .details-testimonial-author {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--on-surface);
+        }
+
+        /* Right Column - Workflow */
+        .details-workflow {
+            position: relative;
+        }
+
+        @media (min-width: 1024px) {
+            .details-workflow { grid-column: span 7; }
+        }
+
+        .workflow-card {
+            background: rgba(28, 42, 65, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            min-height: 28rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .workflow-title {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .workflow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (min-width: 640px) {
+            .workflow-steps {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: stretch;
+            }
+        }
+
+        .workflow-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--surface-container-highest);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        @media (min-width: 640px) {
+            .workflow-step {
+                padding: 2rem 1.5rem;
+            }
+
+            .workflow-step:not(:last-child) {
+                margin-right: 1rem;
+            }
+        }
+
+        .workflow-step:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .workflow-step-icon {
+            width: 4rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(180, 197, 255, 0.1);
+            border: 2px solid rgba(180, 197, 255, 0.2);
+            border-radius: var(--radius-lg);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .workflow-step:hover .workflow-step-icon {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .workflow-step-icon .material-symbols-outlined {
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: color 0.3s ease;
+        }
+
+        .workflow-step:hover .workflow-step-icon .material-symbols-outlined {
+            color: var(--on-primary);
+        }
+
+        .workflow-step-number {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .workflow-step-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--on-surface);
+        }
+
+        /* Blueprint Overlay */
+        .workflow-blueprint {
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            pointer-events: none;
+            background-image:
+                linear-gradient(0deg, transparent 24%, var(--outline-variant) 25%, var(--outline-variant) 26%, transparent 27%, transparent 74%, var(--outline-variant) 75%, var(--outline-variant) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, var(--outline-variant) 25%, var(--outline-variant) 26%, transparent 27%, transparent 74%, var(--outline-variant) 75%, var(--outline-variant) 76%, transparent 77%, transparent);
+            background-size: 3rem 3rem;
+        }
+
+        /* Glow Effects */
+        .workflow-glow {
+            position: absolute;
+            width: 12rem;
+            height: 12rem;
+            background: var(--primary);
+            filter: blur(100px);
+            opacity: 0.08;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .workflow-glow.top-right {
+            top: -4rem;
+            right: -4rem;
+        }
+
+        .workflow-glow.bottom-left {
+            bottom: -4rem;
+            left: -4rem;
+            background: #0053db;
+        }
+
+        /* Category Badge */
+        .details-category {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(180, 197, 255, 0.1);
+            border: 1px solid rgba(180, 197, 255, 0.2);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .details-title { font-size: 2rem; }
+            .workflow-card { padding: 2rem 1.5rem; }
+        }
+    </style>
 </head>
-<body class="bg-background text-on-surface selection:bg-primary selection:text-on-primary architechtural-grid">
+<body class="bg-background text-on-surface">
 
     <!-- Navbar -->
     <nav class="navbar">
@@ -32,17 +440,76 @@
         </div>
     </nav>
 
-    <main class="pt-24 pb-12 min-h-screen flex flex-col items-center px-6">
-        <!-- Breadcrumb -->
-        <div class="w-full max-w-7xl px-8 mb-8">
-            <span class="breadcrumb uppercase tracking-[0.05em] font-bold text-primary" id="breadcrumb">Agent Directory</span>
+    <!-- Main Content -->
+    <section class="details-section">
+        <div class="details-container">
+            <!-- Breadcrumb -->
+            <div class="details-breadcrumb">
+                <a href="catalog.html" class="breadcrumb-link">
+                    ← Back to Catalog
+                </a>
+            </div>
+
+            <!-- Header -->
+            <div class="details-header">
+                <span class="details-category" id="details-category">Video</span>
+                <h1 class="details-title" id="details-title">Agent Name</h1>
+                <p class="details-description" id="details-description">Agent description goes here...</p>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="details-grid">
+                <!-- Left Column -->
+                <div class="details-info">
+                    <!-- Platforms -->
+                    <div class="details-platforms" id="details-platforms">
+                        <!-- Dynamic -->
+                    </div>
+
+                    <!-- Deliverables -->
+                    <div class="details-card">
+                        <h3 class="details-card-title">Standard Deliverables</h3>
+                        <ul class="deliverables-list" id="deliverables-list">
+                            <!-- Dynamic -->
+                        </ul>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="details-ctas">
+                        <a href="contact.html" class="details-btn primary">
+                            <span class="material-symbols-outlined">rocket_launch</span>
+                            Request Campaign
+                        </a>
+                        <button class="details-btn secondary" id="favorite-btn" onclick="toggleFavorite()">
+                            <span class="material-symbols-outlined">favorite</span>
+                            <span id="favorite-text">Save to Favorites</span>
+                        </button>
+                    </div>
+
+                    <!-- Testimonial -->
+                    <div class="details-testimonial">
+                        <p class="details-testimonial-text" id="details-testimonial">"Testimonial text..."</p>
+                        <p class="details-testimonial-author" id="details-testimonial-author">— Client Name</p>
+                    </div>
+                </div>
+
+                <!-- Right Column - Workflow -->
+                <div class="details-workflow">
+                    <div class="workflow-card">
+                        <div class="workflow-blueprint"></div>
+                        <div class="workflow-glow top-right"></div>
+                        <div class="workflow-glow bottom-left"></div>
+                        
+                        <h3 class="workflow-title">Implementation Flow</h3>
+                        
+                        <div class="workflow-steps" id="workflow-steps">
+                            <!-- Dynamic -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <!-- Content -->
-        <div class="w-full max-w-7xl px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start" id="details-content">
-            <!-- Content generated by JS -->
-        </div>
-    </main>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -59,114 +526,119 @@
     <!-- Scripts -->
     <script src="js/data.js"></script>
     <script src="js/storage.js"></script>
-    <script src="js/components.js"></script>
-    <script src="js/router.js"></script>
     <script>
-        // Get service ID from URL
+        let currentService = null;
+
         function getServiceIdFromUrl() {
             const params = new URLSearchParams(window.location.search);
             return params.get('id') || 'viral-reels-creator';
         }
-        
-        // Render details
+
+        function getPlatformIcon(platform) {
+            const icons = {
+                'TikTok': 'movie',
+                'Instagram': 'photo_camera',
+                'LinkedIn': 'article',
+                'Facebook': 'share',
+                'X/Twitter': 'chat',
+                'Multi-Channel': 'campaign',
+                'Community': 'forum',
+                'Analytics': 'monitoring',
+                'Meta': 'campaign',
+                'Google': 'search',
+                'Shorts': 'movie',
+                'Blog': 'article',
+                'Website': 'language'
+            };
+            return icons[platform] || 'smart_toy';
+        }
+
         function renderDetails() {
             const serviceId = getServiceIdFromUrl();
             const service = getServiceById(serviceId);
-            
+
             if (!service) {
-                document.getElementById('details-content').innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">error</span><h3>Service not found</h3></div>';
+                document.querySelector('.details-header').innerHTML = `
+                    <div style="text-align: center; padding: 4rem 2rem;">
+                        <span class="material-symbols-outlined" style="font-size: 4rem; color: #64748b; margin-bottom: 1rem;">error</span>
+                        <h2 style="font-size: 1.5rem; color: var(--on-surface); margin-bottom: 0.5rem;">Service not found</h2>
+                        <p style="color: var(--on-surface-variant); margin-bottom: 2rem;">The agent you're looking for doesn't exist or has been removed.</p>
+                        <a href="catalog.html" class="details-btn primary" style="display: inline-flex;">Browse Catalog</a>
+                    </div>
+                `;
+                document.querySelector('.details-grid').style.display = 'none';
                 return;
             }
-            
-            const breadcrumb = document.getElementById('breadcrumb');
-            breadcrumb.textContent = `Agent Directory / ${service.category}`;
-            
-            const isFavorite = Storage.isFavorite(service.id);
-            const content = document.getElementById('details-content');
-            
-            content.innerHTML = `
-                <!-- Info Area (Left) -->
-                <div class="lg:col-span-5 flex flex-col gap-8">
-                    <div class="flex flex-col gap-4">
-                        <h1 class="text-5xl font-extrabold tracking-[-0.02em] text-on-surface leading-tight">${service.name}</h1>
-                        <p class="text-lg text-on-surface-variant leading-relaxed">
-                            ${service.fullDescription}
-                        </p>
+
+            currentService = service;
+
+            // Update header
+            document.getElementById('details-category').textContent = service.category;
+            document.getElementById('details-title').textContent = service.name;
+            document.getElementById('details-description').textContent = service.fullDescription;
+
+            // Update platforms
+            const platformsContainer = document.getElementById('details-platforms');
+            platformsContainer.innerHTML = service.platform.map(p => `
+                <span class="details-platform">
+                    <span class="material-symbols-outlined">${getPlatformIcon(p)}</span>
+                    ${p}
+                </span>
+            `).join('');
+
+            // Update deliverables
+            const deliverablesContainer = document.getElementById('deliverables-list');
+            deliverablesContainer.innerHTML = service.deliverables.map(item => `
+                <li class="deliverable-item">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <span>${item}</span>
+                </li>
+            `).join('');
+
+            // Update testimonial
+            document.getElementById('details-testimonial').textContent = service.testimonial;
+
+            // Update workflow steps
+            const workflowContainer = document.getElementById('workflow-steps');
+            workflowContainer.innerHTML = service.steps.map((step, index) => `
+                <div class="workflow-step">
+                    <div class="workflow-step-icon">
+                        <span class="material-symbols-outlined">${step.icon}</span>
                     </div>
-                    
-                    <!-- Deliverables List -->
-                    <div class="glass-card">
-                        <h3 class="text-xs uppercase tracking-widest font-bold text-primary">Standard Deliverables</h3>
-                        <ul class="deliverables-list" style="margin-top: 1.5rem;">
-                            ${service.deliverables.map(item => `
-                                <li class="deliverable-item">
-                                    <span class="material-symbols-outlined text-primary">check_circle</span>
-                                    <span>${item}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                    
-                    <!-- CTAs -->
-                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                        <a href="contact.html" class="btn btn-primary" style="flex: 1; justify-content: center;">
-                            <span class="material-symbols-outlined">rocket_launch</span>
-                            Request Campaign
-                        </a>
-                        <button class="btn btn-secondary" onclick="toggleFavorite('${service.id}')" style="flex: none;">
-                            <span class="material-symbols-outlined" ${isFavorite ? 'style="font-variation-settings: \'FILL\' 1;"' : ''}>favorite</span>
-                            ${isFavorite ? 'Saved' : 'Save to Favorites'}
-                        </button>
-                    </div>
-                    
-                    <!-- Testimonial -->
-                    <div class="p-4 border-l-2 border-primary bg-surface-container-low italic text-on-surface-variant text-sm rounded">
-                        "${service.testimonial}"
-                    </div>
+                    <span class="workflow-step-number">Step ${step.step}</span>
+                    <h4 class="workflow-step-title">${step.title}</h4>
                 </div>
-                
-                <!-- Visual Area / Workflow (Right) -->
-                <div class="lg:col-span-7 h-full">
-                    <div class="glass-card" style="padding: 3rem; min-height: 500px; position: relative;">
-                        ${service.steps.map((step, index) => `
-                            <div style="text-align: center; position: relative;">
-                                <div class="flowchart-step ${index === 1 ? 'active' : ''}" style="max-width: 20rem; margin: 0 auto; display: inline-flex; align-items: center; gap: 1rem;">
-                                    <div style="width: 3rem; height: 3rem; background: ${index === 1 ? 'var(--primary)' : 'rgba(180, 197, 255, 0.1)'}; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; border: 1px solid ${index === 1 ? 'var(--primary)' : 'rgba(180, 197, 255, 0.2)'};">
-                                        <span class="material-symbols-outlined" style="color: ${index === 1 ? 'var(--on-primary)' : 'var(--primary)'}">${step.icon}</span>
-                                    </div>
-                                    <div style="text-align: left;">
-                                        <span class="text-xs uppercase tracking-widest font-bold" style="display: block; color: var(--primary);">Step ${step.step}</span>
-                                        <span style="font-weight: 700; color: #fff;">${step.title}</span>
-                                    </div>
-                                </div>
-                                ${index < 2 ? `
-                                <div class="flowchart-connector">
-                                    <div></div>
-                                </div>
-                                ` : ''}
-                            </div>
-                        `).join('')}
-                        
-                        <!-- Blueprint Overlay -->
-                        <div class="blueprint-overlay"></div>
-                        
-                        <!-- Glow Effects -->
-                        <div class="glow-primary" style="top: 2.5rem; right: 2.5rem;"></div>
-                        <div class="glow-primary" style="bottom: 2.5rem; left: 2.5rem; background: #0053db;"></div>
-                    </div>
-                </div>
-            `;
+            `).join('');
+
+            // Update favorite button
+            updateFavoriteButton();
         }
-        
-        // Toggle favorite
-        function toggleFavorite(serviceId) {
-            Storage.toggleFavorite(serviceId);
+
+        function updateFavoriteButton() {
+            if (!currentService) return;
+
+            const btn = document.getElementById('favorite-btn');
+            const text = document.getElementById('favorite-text');
+            const isFavorite = Storage.isFavorite(currentService.id);
+
+            if (isFavorite) {
+                btn.classList.add('active');
+                text.textContent = 'Saved to Favorites';
+            } else {
+                btn.classList.remove('active');
+                text.textContent = 'Save to Favorites';
+            }
+        }
+
+        function toggleFavorite() {
+            if (!currentService) return;
+
+            Storage.toggleFavorite(currentService.id);
+            updateFavoriteButton();
             updateFavoriteBadge();
-            renderDetails();
         }
         window.toggleFavorite = toggleFavorite;
 
-        // Update favorite badge
         function updateFavoriteBadge() {
             const favorites = Storage.getFavorites();
             const badge = document.getElementById('fav-count-badge');
@@ -180,7 +652,6 @@
             }
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             renderDetails();
             updateFavoriteBadge();
