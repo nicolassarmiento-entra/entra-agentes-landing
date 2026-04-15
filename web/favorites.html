@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Agents | Aetheris AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body class="bg-background text-on-surface selection:bg-primary selection:text-on-primary">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="landing.html" class="navbar-logo">Aetheris AI</a>
+        <div class="navbar-links" style="display: none;" id="nav-links">
+            <a href="landing.html" class="navbar-link">Solutions</a>
+            <a href="catalog.html" class="navbar-link">Agents</a>
+            <a href="favorites.html" class="navbar-link active">Favorites</a>
+            <a href="contact.html" class="navbar-link">Pricing</a>
+            <a href="admin.html" class="navbar-link">Admin Panel</a>
+        </div>
+        <div class="navbar-right">
+            <a href="contact.html" class="btn btn-primary btn-sm">Get Started</a>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-20 px-8">
+        <div class="container">
+            <div class="page-header">
+                <span class="page-subtitle">Your Selection</span>
+                <h1 class="page-title">Saved Agents</h1>
+            </div>
+            
+            <!-- Favorites Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="favorites-grid">
+                <!-- Rendered by JS -->
+            </div>
+            
+            <!-- Empty State -->
+            <div class="empty-state" id="empty-state" style="display: none;">
+                <span class="material-symbols-outlined">favorite_border</span>
+                <h3>No favorites yet</h3>
+                <p class="text-muted">Start exploring our agents and save your favorites</p>
+                <a href="catalog.html" class="btn btn-primary" style="margin-top: 1rem;">Browse Agents</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">Aetheris AI</div>
+        <div class="footer-copyright">© 2024 Aetheris AI Digital. Architectural Precision.</div>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Security</a>
+            <a href="#" class="footer-link">Status</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/router.js"></script>
+    <script>
+        // Render favorites
+        function renderFavorites() {
+            const favorites = Storage.getFavoriteServices();
+            const grid = document.getElementById('favorites-grid');
+            const emptyState = document.getElementById('empty-state');
+            
+            if (favorites.length === 0) {
+                grid.style.display = 'none';
+                emptyState.style.display = 'block';
+            } else {
+                grid.style.display = 'grid';
+                emptyState.style.display = 'none';
+                grid.innerHTML = favorites.map(service => Components.serviceCard(service)).join('');
+            }
+        }
+        
+        // Toggle favorite
+        function toggleFavorite(serviceId) {
+            Storage.toggleFavorite(serviceId);
+            renderFavorites();
+        }
+        window.toggleFavorite = toggleFavorite;
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', renderFavorites);
+    </script>
+</body>
+</html>

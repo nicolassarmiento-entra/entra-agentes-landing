@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetheris AI | Architectural Digital Marketing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body class="bg-background text-on-surface selection:bg-primary selection:text-on-primary">
+    
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="landing.html" class="navbar-logo">Aetheris AI</a>
+        <div class="navbar-links" style="display: none;" id="nav-links">
+            <a href="landing.html" class="navbar-link active">Solutions</a>
+            <a href="catalog.html" class="navbar-link">Agents</a>
+            <a href="#" class="navbar-link">Case Studies</a>
+            <a href="contact.html" class="navbar-link">Pricing</a>
+            <a href="admin.html" class="navbar-link">Admin Panel</a>
+        </div>
+        <div class="navbar-right">
+            <a href="favorites.html" class="navbar-link" title="Favorites">
+                <span class="material-symbols-outlined">favorite</span>
+            </a>
+            <a href="contact.html" class="btn btn-primary btn-sm">Get Started</a>
+        </div>
+    </nav>
+
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section class="hero relative min-h-[921px] flex items-center justify-center overflow-hidden px-6 lg:px-12">
+            <!-- Background Image -->
+            <div class="hero-background">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-20 pointer-events-none">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcxNkUQfaVoGwDI-B35AeVaQKb11UjOXOrxiS3DAp0tWRvvufdIABPeLQ89AXRDss_NX45RzEqPA-aRccFt_d_Ol85lXZAFhMc1qJKh0thiSS5L6txuofFSk1lAUscUNdLg5cAm_TfyXG0baFQtzXLhBU303PyVuBtqtOlSoPjYWDOrdfbBrGHreMnegJve8VJBspqgRa7SFaC4ODdlPWO_lp8bky7kcd6g8OOW8yneirQp3Z9BbdKd2aSqamUZwLflyDt4T3-xp0" alt="" class="w-full h-full object-cover">
+                </div>
+            </div>
+            
+            <!-- Hero Content -->
+            <div class="relative z-10 max-w-5xl text-center">
+                <span class="hero-badge">
+                    The Future of Digital Agency
+                </span>
+                <h1 class="hero-title">
+                    Scale your digital presence with <span class="text-primary italic">AI-driven</span> marketing agents
+                </h1>
+                <p class="hero-subtitle">
+                    Automate your content strategy across Social Media with high-fidelity creative generation.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="catalog.html" class="btn btn-primary btn-lg">Get Started</a>
+                    <button class="btn btn-secondary btn-lg">Watch Demo</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Agents Section -->
+        <section class="section bg-surface px-6 lg:px-12">
+            <div class="container">
+                <div class="flex flex-col mb-16">
+                    <h2 class="text-3xl font-bold tracking-tight mb-2">Featured AI Agents</h2>
+                    <div class="h-1 w-20 bg-primary" style="height: 4px; width: 80px;"></div>
+                </div>
+                
+                <!-- Bento Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Large Featured Card -->
+                    <div class="md:col-span-2 bg-surface-container-high border border-outline-variant p-8 relative overflow-hidden group">
+                        <div class="relative z-10 flex flex-col h-full justify-between">
+                            <div>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <div class="w-12 h-12 bg-surface-container-lowest border border-outline-variant flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-primary text-3xl">smart_toy</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold">Viral Reels Creator</h3>
+                                        <p class="text-[10px] tracking-widest uppercase font-bold" style="color: #64748b;">TikTok • Instagram • Shorts</p>
+                                    </div>
+                                </div>
+                                <p class="text-on-surface-variant text-lg leading-relaxed max-w-md">
+                                    Autonomous production of high-engagement vertical video. Leverages real-time trend analysis to generate scripts, visuals, and voiceovers.
+                                </p>
+                            </div>
+                            <a href="details.html?id=viral-reels-creator" class="flex items-center gap-2 text-primary font-bold text-sm tracking-widest uppercase mt-8 hover:gap-4 transition-all">
+                                View Details <span class="material-symbols-outlined">arrow_forward</span>
+                            </a>
+                        </div>
+                        <div class="absolute bottom-0 right-0 w-1/2 opacity-40 group-hover:scale-110 transition-transform duration-700">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV4klFUIvvJ8bvGiuXP1kDHUpupnIo8HTWbN_v8UfB0p7MH1aaJVO4Sgmww1dOAFa0kXiH12n0S-gOV-u1k6Hs1WXOWCXdQ8wBBPUCmdDBhZxFObzZlDkZG4m3u_uRoLd6oWfy2RFKYsafJivfxlvh9X7_kXEg8jIpdBmVEx-S3TRUqvVGCW7p4wr_kp96_aeGQJcWkNYkw7GwAWsECVgunX32oIz21IZPJFPBjq0sxE0loPCH2JZRFmKnnfHoFt3zH-deQyikBhA" alt="" class="w-full h-full object-contain">
+                        </div>
+                    </div>
+                    
+                    <!-- Side Card 1 -->
+                    <div class="bg-surface-container-high border border-outline-variant p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 bg-surface-container-lowest border border-outline-variant flex items-center justify-center mb-6">
+                                <span class="material-symbols-outlined text-primary">analytics</span>
+                            </div>
+                            <h3 class="text-lg font-bold mb-3">Copywriter Pro</h3>
+                            <p class="text-on-surface-variant text-sm">
+                                Mathematical precision in brand messaging. SEO-optimized and persona-targeted.
+                            </p>
+                        </div>
+                        <span class="text-primary font-bold text-xs tracking-widest uppercase mt-6">Active Agent</span>
+                    </div>
+                    
+                    <!-- Side Card 2 -->
+                    <div class="bg-surface-container-high border border-outline-variant p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 bg-surface-container-lowest border border-outline-variant flex items-center justify-center mb-6">
+                                <span class="material-symbols-outlined text-primary">auto_graph</span>
+                            </div>
+                            <h3 class="text-lg font-bold mb-3">Strategy Bot</h3>
+                            <p class="text-on-surface-variant text-sm">
+                                Predictive modeling for campaign ROI. Automated A/B testing at scale.
+                            </p>
+                        </div>
+                        <span class="text-primary font-bold text-xs tracking-widest uppercase mt-6">Coming Soon</span>
+                    </div>
+                    
+                    <!-- Side Card 3 -->
+                    <div class="bg-surface-container-high border border-outline-variant p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 bg-surface-container-lowest border border-outline-variant flex items-center justify-center mb-6">
+                                <span class="material-symbols-outlined text-primary">campaign</span>
+                            </div>
+                            <h3 class="text-lg font-bold mb-3">Ad Manager</h3>
+                            <p class="text-on-surface-variant text-sm">
+                                Real-time bidding and creative rotation for LinkedIn &amp; Meta.
+                            </p>
+                        </div>
+                        <span class="text-primary font-bold text-xs tracking-widest uppercase mt-6">Beta Access</span>
+                    </div>
+                    
+                    <!-- Side Card 4 -->
+                    <div class="bg-surface-container-high border border-outline-variant p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 bg-surface-container-lowest border border-outline-variant flex items-center justify-center mb-6">
+                                <span class="material-symbols-outlined text-primary">person_add</span>
+                            </div>
+                            <h3 class="text-lg font-bold mb-3">Community Hub</h3>
+                            <p class="text-on-surface-variant text-sm">
+                                24/7 engagement and sentiment analysis across Discord and X.
+                            </p>
+                        </div>
+                        <a href="details.html?id=comment-engine-ai" class="text-primary font-bold text-xs tracking-widest uppercase mt-6">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="section bg-surface-container-low px-6 lg:px-12">
+            <div class="container">
+                <div class="text-center mb-20">
+                    <p class="text-[10px] tracking-[0.4em] font-bold uppercase" style="color: #64748b; margin-bottom: 1rem;">Implementation Protocol</p>
+                    <h2 class="text-4xl font-bold tracking-tight">How it Works</h2>
+                </div>
+                
+                <!-- Timeline -->
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-0 relative border-l lg:border-l-0 lg:border-t border-outline-variant">
+                    <!-- Step 1 -->
+                    <div class="p-8 border-b lg:border-b-0 lg:border-r border-outline-variant relative">
+                        <div class="absolute -left-[9px] -top-[9px] w-4 h-4 bg-primary rotate-45 hidden lg:block"></div>
+                        <span class="text-[10px] font-bold text-primary mb-4 block">PHASE 01</span>
+                        <h4 class="text-xl font-bold mb-4">Select Agent</h4>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">
+                            Choose from our library of specialized marketing agents designed for specific platforms and goals.
+                        </p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="p-8 border-b lg:border-b-0 lg:border-r border-outline-variant">
+                        <span class="text-[10px] font-bold text-primary mb-4 block">PHASE 02</span>
+                        <h4 class="text-xl font-bold mb-4">Input Brand Context</h4>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">
+                            Upload brand guidelines, tonal preferences, and objective data to align the AI with your identity.
+                        </p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="p-8 border-b lg:border-b-0 lg:border-r border-outline-variant">
+                        <span class="text-[10px] font-bold text-primary mb-4 block">PHASE 03</span>
+                        <h4 class="text-xl font-bold mb-4">AI Generation</h4>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">
+                            Our agents construct high-fidelity creatives, copy, and strategies within seconds.
+                        </p>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="p-8">
+                        <span class="text-[10px] font-bold text-primary mb-4 block">PHASE 04</span>
+                        <h4 class="text-xl font-bold mb-4">Review &amp; Launch</h4>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">
+                            Approve the generated assets or request refinements through our architectural dashboard.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="section bg-surface-container-low px-6 lg:px-12">
+            <div class="container">
+                <div class="text-center mb-16">
+                    <p class="text-[10px] tracking-[0.4em] font-bold uppercase" style="color: #64748b; margin-bottom: 1rem;">Investment Tiers</p>
+                    <h2 class="text-4xl font-bold tracking-tight">Pricing Plans</h2>
+                    <p class="text-on-surface-variant mt-4 max-w-2xl mx-auto">Choose the deployment scale that fits your business objectives.</p>
+                </div>
+
+                <!-- Pricing Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Starter Plan -->
+                    <div class="bg-surface-container-high border border-outline-variant rounded-xl p-8 flex flex-col hover:border-primary/50 transition-all duration-300 group">
+                        <div class="mb-6">
+                            <span class="text-[10px] font-bold tracking-widest uppercase bg-surface-container-low px-3 py-1 rounded border border-outline-variant">Starter</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Launch</h3>
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="text-4xl font-black text-on-surface">$499</span>
+                            <span class="text-sm text-slate-500">/month</span>
+                        </div>
+                        <p class="text-on-surface-variant text-sm mb-6">Perfect for small teams getting started with AI marketing.</p>
+                        <ul class="space-y-3 mb-8 flex-grow">
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>1 Active Agent</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>50 Content Generations/mo</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>Basic Analytics</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>Email Support</span>
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-secondary w-full justify-center">Get Started</a>
+                    </div>
+
+                    <!-- Professional Plan (Featured) -->
+                    <div class="bg-surface-container-high border-2 border-primary rounded-xl p-8 flex flex-col relative transform scale-105 shadow-2xl shadow-primary/10">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+                            <span class="bg-primary text-on-primary text-[10px] font-bold tracking-widest uppercase px-4 py-1 rounded-full">Most Popular</span>
+                        </div>
+                        <div class="mb-6">
+                            <span class="text-[10px] font-bold tracking-widest uppercase bg-primary/10 text-primary px-3 py-1 rounded border border-primary/20">Professional</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Scale</h3>
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="text-4xl font-black text-on-surface">$1,299</span>
+                            <span class="text-sm text-slate-500">/month</span>
+                        </div>
+                        <p class="text-on-surface-variant text-sm mb-6">For growing teams needing multiple AI agents.</p>
+                        <ul class="space-y-3 mb-8 flex-grow">
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>5 Active Agents</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>500 Content Generations/mo</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>Advanced Analytics</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>Priority Support</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>Custom Integrations</span>
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-primary w-full justify-center">Get Started</a>
+                    </div>
+
+                    <!-- Enterprise Plan -->
+                    <div class="bg-surface-container-high border border-outline-variant rounded-xl p-8 flex flex-col hover:border-primary/50 transition-all duration-300 group">
+                        <div class="mb-6">
+                            <span class="text-[10px] font-bold tracking-widest uppercase bg-surface-container-low px-3 py-1 rounded border border-outline-variant">Enterprise</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="text-4xl font-black text-on-surface">Custom</span>
+                        </div>
+                        <p class="text-on-surface-variant text-sm mb-6">Full-scale AI marketing infrastructure for large organizations.</p>
+                        <ul class="space-y-3 mb-8 flex-grow">
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>Unlimited Agents</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>Unlimited Generations</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>Custom LLM Training</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>Dedicated Account Manager</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                <span>SLA Guarantee</span>
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-secondary w-full justify-center">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="section bg-surface px-6 lg:px-12">
+            <div class="container">
+                <div class="max-w-5xl mx-auto bg-surface-container-highest border border-outline-variant p-12 lg:p-20 text-center relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px]"></div>
+                    <div class="relative z-10">
+                        <h2 class="text-3xl lg:text-5xl font-bold tracking-tighter mb-8 leading-tight">
+                            Ready to deploy your first AI marketing team?
+                        </h2>
+                        <a href="contact.html" class="btn btn-primary btn-lg">Get Started Now</a>
+                        <p class="mt-8 text-slate-500 text-xs tracking-widest uppercase">No credit card required for initial setup</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">Aetheris AI</div>
+        <div class="footer-copyright">© 2024 Aetheris AI Digital. Architectural Precision.</div>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Security</a>
+            <a href="#" class="footer-link">Status</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/router.js"></script>
+</body>
+</html>

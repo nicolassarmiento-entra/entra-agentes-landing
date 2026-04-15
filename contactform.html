@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-lowest": "#010e24",
+              "surface": "#041329",
+              "on-secondary-fixed": "#171c25",
+              "on-primary-fixed-variant": "#003ea8",
+              "outline-variant": "#44474d",
+              "on-tertiary-fixed-variant": "#5d4124",
+              "primary-fixed": "#dbe1ff",
+              "secondary-fixed-dim": "#c2c6d3",
+              "on-primary-container": "#4479ff",
+              "on-error": "#690005",
+              "primary": "#b4c5ff",
+              "inverse-on-surface": "#233148",
+              "on-tertiary-fixed": "#2b1701",
+              "outline": "#8f9097",
+              "on-surface-variant": "#c5c6cd",
+              "on-secondary-fixed-variant": "#424751",
+              "on-primary": "#002a78",
+              "on-tertiary-container": "#9d7b5a",
+              "tertiary-container": "#281400",
+              "secondary-container": "#444954",
+              "primary-fixed-dim": "#b4c5ff",
+              "on-secondary": "#2c303a",
+              "surface-dim": "#041329",
+              "tertiary-fixed-dim": "#e7bf99",
+              "on-primary-fixed": "#00174b",
+              "surface-container": "#112036",
+              "background": "#041329",
+              "surface-container-highest": "#27354c",
+              "secondary": "#c2c6d3",
+              "on-surface": "#d6e3ff",
+              "inverse-surface": "#d6e3ff",
+              "surface-bright": "#2c3951",
+              "on-error-container": "#ffdad6",
+              "surface-container-low": "#0d1c32",
+              "tertiary": "#e7bf99",
+              "on-tertiary": "#432b10",
+              "secondary-fixed": "#dee2f0",
+              "primary-container": "#001545",
+              "surface-container-high": "#1c2a41",
+              "inverse-primary": "#0053db",
+              "tertiary-fixed": "#ffdcbd",
+              "surface-tint": "#b4c5ff",
+              "on-secondary-container": "#b4b8c5",
+              "on-background": "#d6e3ff",
+              "surface-variant": "#27354c",
+              "error-container": "#93000a",
+              "error": "#ffb4ab"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(28, 42, 65, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid #44474d;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#0a192f]/80 backdrop-blur-md border-b border-[#44474d] flex justify-between items-center px-8 h-16 w-full">
+<div class="text-xl font-bold tracking-tighter text-[#b4c5ff]">Aetheris AI</div>
+<div class="hidden md:flex items-center space-x-8 font-['Inter'] tracking-tight text-sm font-medium">
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Solutions</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Agents</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Case Studies</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Pricing</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary px-5 py-2 rounded-lg text-sm font-bold tracking-tight hover:scale-95 transition-all duration-150">
+                Get Started
+            </button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="relative pt-32 pb-24 min-h-screen flex flex-col items-center px-6 overflow-hidden">
+<!-- Abstract Architectural Shapes -->
+<div class="absolute top-[-10%] left-[-5%] w-[40%] h-[60%] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-[40%] h-[60%] bg-on-primary-container/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative z-10">
+<!-- Left Column: Contextual Messaging -->
+<div class="lg:col-span-5 space-y-8">
+<div>
+<span class="inline-block text-[10px] tracking-[0.2em] font-bold text-primary uppercase mb-4 py-1 px-2 border border-outline-variant bg-surface-container-low">Connect With Intelligence</span>
+<h1 class="text-5xl font-black tracking-tighter text-on-surface leading-[0.95] mb-6">
+                        Scale your digital footprint.
+                    </h1>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-sm">
+                        Our AI agents are ready to deploy. Share your goals, and we'll engineer a marketing strategy with architectural precision.
+                    </p>
+</div>
+<div class="space-y-6 pt-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-surface-container-high border border-outline-variant rounded">
+<span class="material-symbols-outlined text-primary" data-icon="terminal">terminal</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Fast Deployment</p>
+<p class="text-sm font-medium">Ready in &lt; 24 hours</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-surface-container-high border border-outline-variant rounded">
+<span class="material-symbols-outlined text-primary" data-icon="query_stats">query_stats</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Precision Analytics</p>
+<p class="text-sm font-medium">Real-time attribution</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Lead Gen Form -->
+<div class="lg:col-span-7">
+<div class="glass-panel p-8 lg:p-12 shadow-2xl relative">
+<div class="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-primary/20 pointer-events-none"></div>
+<form action="#" class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Name Field -->
+<div class="space-y-2">
+<label class="block text-[10px] font-bold tracking-[0.1em] uppercase text-slate-400" for="name">Name</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant px-4 py-4 focus:ring-0 focus:border-primary transition-colors text-on-surface placeholder:text-slate-600 outline-none" id="name" name="name" placeholder="John Doe" type="text"/>
+</div>
+<!-- Email Field (Validation State) -->
+<div class="space-y-2">
+<label class="block text-[10px] font-bold tracking-[0.1em] uppercase text-slate-400" for="email">Email</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-emerald-500/50 px-4 py-4 focus:ring-0 focus:border-emerald-500 transition-colors text-on-surface placeholder:text-slate-600 outline-none" id="email" name="email" type="email" value="alex@tech.co"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-emerald-500 text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+<!-- Company Field -->
+<div class="space-y-2">
+<label class="block text-[10px] font-bold tracking-[0.1em] uppercase text-slate-400" for="company">Company</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant px-4 py-4 focus:ring-0 focus:border-primary transition-colors text-on-surface placeholder:text-slate-600 outline-none" id="company" name="company" placeholder="Acme Digital" type="text"/>
+</div>
+<!-- Message Field -->
+<div class="space-y-2">
+<label class="block text-[10px] font-bold tracking-[0.1em] uppercase text-slate-400" for="message">Message</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant px-4 py-4 focus:ring-0 focus:border-primary transition-colors text-on-surface placeholder:text-slate-600 outline-none resize-none" id="message" name="message" placeholder="Tell us about your project..." rows="4"></textarea>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-[#8b5cf6] hover:bg-[#7c3aed] text-white font-black py-5 tracking-[0.1em] uppercase text-sm flex items-center justify-center gap-3 transition-all active:scale-95 group" type="submit">
+                            Submit Inquiry
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- Subtle Trust Element -->
+<div class="mt-8 flex justify-between items-center px-4">
+<p class="text-[10px] tracking-widest text-slate-500 uppercase">Secured by Aetheris Shield</p>
+<div class="flex gap-4">
+<img class="h-4 opacity-40 grayscale" data-alt="Technical security certification logo for ISO 27001 in monochrome minimalist style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfI0D8nCTI0lW4buUGCAo4gITb88dGI7I8g1RHX6FYybpQ7g6ufnS4-QONffAXJ3yk9WEWLcayxsEra2pG92eAYJU-26fGnSfsW2p2nPNopTtXU7h_3WBY2xQ5hjesYXy74AJbgqCRjHCnxWwvwarKkNGWTa2LNw9XzYXf5nDxASKhqiSgiOePmRJykyVbABFMXNcsZIjdt20ieP5c0HDV-HNW60_ou8MgACCLK975FwH5xlVb_GA_KApBHVkcAw_rML7ZTJ_KBUA"/>
+<img class="h-4 opacity-40 grayscale" data-alt="Privacy compliance badge for GDPR with clean sans-serif typography on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMheIkhKqCYlUTpxRnilEIg6JObMC6-HinSTSp4Jrfr_cxisG-B6H_aSf_2o8O6jzU_CRyKrr7fapbXRBjiSWJ-RRaND0Gu9jC2rGE4NqVDsIAYyOXhARJqtX7mK1A3zJWWJapBy5B1d4wrnEAkPUV95UVR4Bz0bI8XrH1cUVLLxNo9YXWkG5x_dNSdbzZ_Ehh4DG7luJnau845OqTzkZ2NwORes0s-1V5074HjtpegziDKYTVJGQcYax0eLs8qzmOkbCdq1HBl3w"/>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#44474d] bg-[#041329] flex flex-col md:flex-row justify-between items-center px-12 py-8 w-full font-['Inter'] text-[10px] tracking-widest uppercase">
+<div class="text-[#b4c5ff] font-bold mb-4 md:mb-0">
+            © 2024 Aetheris AI Digital. Architectural Precision.
+        </div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-slate-500 hover:text-[#b4c5ff] transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-[#b4c5ff] transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-[#b4c5ff] transition-colors" href="#">Security</a>
+<a class="text-slate-500 hover:text-[#b4c5ff] transition-colors" href="#">Status</a>
+</div>
+</footer>
+</body></html>

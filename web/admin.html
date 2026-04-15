@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Aetheris AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/components.css">
+    <style>
+        /* Sidebar Styles */
+        .sidebar {
+            height: 100vh;
+            width: 16rem;
+            border-right: 1px solid var(--outline-variant);
+            background: var(--surface-container-low);
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            shrink: 0;
+        }
+        
+        .sidebar-logo {
+            font-size: 1.125rem;
+            font-weight: 900;
+            color: #fff;
+            padding: 1.5rem 1rem;
+        }
+        
+        .sidebar-menu {
+            padding: 0.5rem;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        
+        .sidebar-section-title {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 1rem;
+            padding: 0 1rem;
+        }
+        
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: #64748b;
+            border-radius: var(--radius-md);
+            transition: all 0.2s ease;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        
+        .sidebar-item:hover {
+            background: rgba(28, 42, 65, 0.5);
+            color: #cbd5e1;
+        }
+        
+        .sidebar-item.active {
+            background: var(--surface-container-high);
+            color: var(--primary);
+            border-right: 4px solid var(--primary);
+        }
+        
+        .sidebar-item .material-symbols-outlined {
+            font-size: 1.25rem;
+        }
+        
+        .sidebar-footer {
+            padding: 1rem;
+            border-top: 1px solid var(--outline-variant);
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            min-height: 100vh;
+        }
+        
+        .content-header {
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            background: var(--surface-container-low);
+            border-bottom: 1px solid var(--outline-variant);
+        }
+        
+        .content-body {
+            padding: 2rem;
+            flex-grow: 1;
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--surface-container-high);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stat-label {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-value {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+        
+        .stat-number {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        
+        .stat-icon .material-symbols-outlined {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        /* Table */
+        .table-container {
+            background: var(--surface-container-low);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .table-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--outline-variant);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .table-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--on-surface);
+        }
+        
+        .table-subtitle {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="flex bg-background text-on-surface selection:bg-primary selection:text-on-primary" style="min-height: 100vh;">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            Aetheris Marketing
+        </div>
+        
+        <div class="sidebar-menu">
+            <div class="sidebar-section-title">Main Menu</div>
+            
+            <a href="landing.html" class="sidebar-item">
+                <span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+            
+            <!-- ACTIVE: Campaigns = Service Management -->
+            <a href="admin.html" class="sidebar-item active">
+                <span class="material-symbols-outlined">rocket_launch</span>
+                Campaigns
+            </a>
+            
+            <a href="#" class="sidebar-item">
+                <span class="material-symbols-outlined">insights</span>
+                Analytics
+            </a>
+            
+            <a href="catalog.html" class="sidebar-item">
+                <span class="material-symbols-outlined">smart_toy</span>
+                AI Agents
+            </a>
+            
+            <a href="#" class="sidebar-item">
+                <span class="material-symbols-outlined">payments</span>
+                Billing
+            </a>
+            
+            <a href="#" class="sidebar-item">
+                <span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+        </div>
+        
+        <div class="sidebar-footer">
+            <button class="btn btn-primary w-full" style="justify-content: center;">
+                <span class="material-symbols-outlined" style="font-size: 1rem;">add</span>
+                New Campaign
+            </button>
+            
+            <div class="mt-4">
+                <a href="#" class="sidebar-item" style="padding: 0.5rem 1rem;">
+                    <span class="material-symbols-outlined">help</span>
+                    Help Center
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="content-header">
+            <div class="flex items-center gap-4">
+                <h1 class="text-xl font-bold tracking-tight text-on-surface">Service Inventory</h1>
+                <span class="badge badge-primary">Admin Panel</span>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <div class="search-container">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input type="text" class="input search-input" placeholder="Search services..." style="width: 16rem; padding-left: 2.5rem;">
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <div style="text-align: right;">
+                        <p class="text-xs font-bold text-on-surface">Admin User Profile</p>
+                        <p class="text-[10px] uppercase tracking-tighter" style="color: #64748b;">Chief Architect</p>
+                    </div>
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZkZEkqLYLMeYz-p7YjTWt-zb9c6W32sUMgpjNqRMcPv8al2l0eSBbHQYyyz11k-31J7JKf3_7D1OC3qSE7MwllkAJGEDqti9EW7penFA54qoVd3yF6gTAAJLnVwOT_4MMwbJEZ0Awtynxf_-qZzXgmuKtlsYYNjI6mQMDp7at73PlRU5qLd5fhSj9xvI9m2KCQ8oieI5yj-qdijprnP-UYSC-RGPL5J8L7cWq4NW-QGHz9RUvKOYn5sfTSG9hyfSf9IZVbc2ZTX4" 
+                         alt="Profile" 
+                         style="width: 2rem; height: 2rem; border-radius: 50%; border: 1px solid var(--primary); object-fit: cover;">
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="content-body">
+            <!-- Stats Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Total Services</span>
+                    <div class="stat-value">
+                        <span class="stat-number" id="total-services">0</span>
+                        <span class="stat-icon material-symbols-outlined">inventory_2</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <span class="stat-label">Active Agents</span>
+                    <div class="stat-value">
+                        <span class="stat-number" id="active-agents">0</span>
+                        <span class="stat-icon material-symbols-outlined">bolt</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <span class="stat-label">Social Reach</span>
+                    <div class="stat-value">
+                        <span class="stat-number">8.4M</span>
+                        <span class="stat-icon material-symbols-outlined">public</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <span class="stat-label">Platform Health</span>
+                    <div class="stat-value">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-icon material-symbols-outlined">verified_user</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-container">
+                <div class="table-header">
+                    <div>
+                        <h2 class="table-title">Service Catalog</h2>
+                        <p class="table-subtitle">Manage all AI-driven marketing offerings</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openModal()">
+                        <span class="material-symbols-outlined" style="font-size: 1rem;">add</span>
+                        Add Service
+                    </button>
+                </div>
+
+                <div class="table-container" style="border: none; border-radius: 0;">
+                    <table class="table">
+                        <thead>
+                            <tr style="background: var(--surface-container-lowest);">
+                                <th>ID</th>
+                                <th>Service Name</th>
+                                <th>Social Network</th>
+                                <th>Status</th>
+                                <th style="text-align: right;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="services-tbody" class="divide-y" style="border-color: var(--outline-variant);">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="p-4 border-t flex items-center justify-between text-xs font-bold uppercase tracking-widest" style="color: #64748b; border-color: var(--outline-variant);">
+                    <span id="showing-count">Showing 0 of 0 Services</span>
+                    <div class="flex items-center gap-4">
+                        <button class="hover:text-primary transition-colors" disabled>Previous</button>
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 flex items-center justify-center bg-primary text-on-primary rounded">1</span>
+                        </div>
+                        <button class="hover:text-primary transition-colors">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Add/Edit Service -->
+    <div id="service-modal" class="modal-overlay">
+        <div style="width: 100%; max-width: 36rem; background: var(--surface-container-high); border: 1px solid var(--outline-variant); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column;">
+            <div class="px-8 py-6 flex justify-between items-center" style="border-bottom: 1px solid var(--outline-variant);">
+                <h3 class="text-xl font-bold tracking-tight">Create New Service</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form id="service-form" class="p-8 space-y-6">
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="form-group" style="margin: 0;">
+                        <label class="form-label" for="service-name">Service Name</label>
+                        <input type="text" id="service-name" class="input" placeholder="e.g. AI Content Suite">
+                    </div>
+                    <div class="form-group" style="margin: 0;">
+                        <label class="form-label" for="service-network">Social Network</label>
+                        <select id="service-network" class="input">
+                            <option value="LinkedIn">LinkedIn</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="TikTok">TikTok</option>
+                            <option value="X/Twitter">X / Twitter</option>
+                            <option value="Facebook">Facebook</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="margin: 0;">
+                    <label class="form-label" for="service-description">Service Description</label>
+                    <textarea id="service-description" class="input textarea" placeholder="Describe the AI capabilities and intended outcome..." rows="4"></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="form-group" style="margin: 0;">
+                        <label class="form-label" for="service-category">Agent Type</label>
+                        <select id="service-category" class="input">
+                            <option value="Video">Video</option>
+                            <option value="Copy">Copy</option>
+                            <option value="Static">Static</option>
+                            <option value="Analytics">Analytics</option>
+                            <option value="Community">Community</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin: 0;">
+                        <label class="form-label">API Status</label>
+                        <div class="flex items-center gap-4 h-full" style="align-items: center; padding-top: 0.5rem;">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="api-status" value="enabled" checked style="accent-color: var(--primary);">
+                                <span class="text-xs">Enabled</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="api-status" value="maintenance" style="accent-color: var(--primary);">
+                                <span class="text-xs">Maintenance</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-end gap-4" style="padding-top: 1rem;">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Provision Service</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full border-t flex justify-between items-center px-12 py-8" style="border-color: var(--outline-variant); background: var(--surface);">
+        <div style="font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: #64748b;">
+            © 2024 Aetheris AI Digital. Architectural Precision.
+        </div>
+        <div class="flex gap-8">
+            <a href="#" style="font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: #64748b;">Privacy Policy</a>
+            <a href="#" style="font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: #64748b;">Terms of Service</a>
+            <a href="#" style="font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff;">Security</a>
+            <a href="#" style="font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: #64748b;">Status</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script>
+        // Render services table
+        function renderServices() {
+            const tbody = document.getElementById('services-tbody');
+            const activeCount = SERVICES.filter(s => s.statusType === 'active').length;
+            
+            // Update stats
+            document.getElementById('total-services').textContent = SERVICES.length;
+            document.getElementById('active-agents').textContent = activeCount;
+            document.getElementById('showing-count').textContent = `Showing ${SERVICES.length} of ${SERVICES.length} Services`;
+            
+            tbody.innerHTML = SERVICES.map((service, index) => `
+                <tr style="transition: background-color 0.2s;">
+                    <td style="font-family: monospace; font-size: 0.75rem; color: #94a3b8;">#SV-${String(index + 1).padStart(4, '0')}</td>
+                    <td>
+                        <div style="display: flex; flex-direction: column;">
+                            <span style="font-weight: 700; color: var(--on-surface);">${service.name}</span>
+                            <span style="font-size: 0.625rem; color: #64748b;">${service.shortDescription.substring(0, 35)}${service.shortDescription.length > 35 ? '...' : ''}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: ${service.statusType === 'active' ? 'var(--primary)' : '#64748b'};"></div>
+                            <span style="font-size: 0.75rem; font-weight: 500;">${service.platform[0]}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="badge ${service.statusType === 'active' ? 'badge-active' : 'badge-coming'}">
+                            ${service.statusType === 'active' ? 'Operational' : 'Maintenance'}
+                        </span>
+                    </td>
+                    <td style="text-align: right;">
+                        <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+                            <button class="p-2 hover:bg-surface-bright rounded transition-colors" style="color: #94a3b8;" title="Edit">
+                                <span class="material-symbols-outlined" style="font-size: 1rem;">edit</span>
+                            </button>
+                            <button class="p-2 hover:bg-error/10 rounded transition-colors" style="color: #94a3b8;" onclick="deleteService('${service.id}')" title="Delete">
+                                <span class="material-symbols-outlined" style="font-size: 1rem;">delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        // Modal functions
+        function openModal() {
+            document.getElementById('service-modal').classList.add('show');
+        }
+        
+        function closeModal() {
+            document.getElementById('service-modal').classList.remove('show');
+            document.getElementById('service-form').reset();
+        }
+        
+        window.closeModal = closeModal;
+        
+        // Close modal on overlay click
+        document.getElementById('service-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        
+        // Add new service
+        document.getElementById('service-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('service-name').value;
+            const description = document.getElementById('service-description').value;
+            const category = document.getElementById('service-category').value;
+            const network = document.getElementById('service-network').value;
+            
+            const newService = {
+                id: name.toLowerCase().replace(/\s+/g, '-'),
+                name: name,
+                shortDescription: description,
+                fullDescription: description,
+                platform: [network],
+                platformIcon: 'smart_toy',
+                deliverables: ['Custom Implementation'],
+                steps: [
+                    { step: '01', title: 'Setup', icon: 'settings' },
+                    { step: '02', title: 'Processing', icon: 'sync' },
+                    { step: '03', title: 'Complete', icon: 'check_circle' }
+                ],
+                testimonial: 'New custom service added.',
+                status: 'Active Agent',
+                statusType: 'active',
+                image: '',
+                category: category,
+                featured: false
+            };
+            
+            SERVICES.push(newService);
+            alert('Service added successfully!');
+            closeModal();
+            renderServices();
+        });
+        
+        // Delete service
+        function deleteService(serviceId) {
+            if (confirm('Are you sure you want to delete this service? This cannot be undone.')) {
+                const index = SERVICES.findIndex(s => s.id === serviceId);
+                if (index > -1) {
+                    SERVICES.splice(index, 1);
+                    renderServices();
+                }
+            }
+        }
+        window.deleteService = deleteService;
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', renderServices);
+    </script>
+</body>
+</html>

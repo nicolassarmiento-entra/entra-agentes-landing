@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Aetheris AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body class="bg-background text-on-surface selection:bg-primary selection:text-on-primary">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="landing.html" class="navbar-logo">Aetheris AI</a>
+        <div class="navbar-links" style="display: none;" id="nav-links">
+            <a href="landing.html" class="navbar-link">Solutions</a>
+            <a href="catalog.html" class="navbar-link">Agents</a>
+            <a href="#" class="navbar-link">Case Studies</a>
+            <a href="contact.html" class="navbar-link active">Pricing</a>
+            <a href="admin.html" class="navbar-link">Admin Panel</a>
+        </div>
+        <div class="navbar-right">
+            <a href="favorites.html" class="navbar-link" title="Favorites">
+                <span class="material-symbols-outlined">favorite</span>
+            </a>
+            <a href="contact.html" class="btn btn-primary btn-sm">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-24 min-h-screen flex flex-col items-center px-6 overflow-hidden relative">
+        <!-- Glow Effects -->
+        <div class="absolute top-[-10%] left-[-5%] w-[40%] h-[60%] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-5%] w-[40%] h-[60%] bg-on-primary-container/5 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative z-10">
+            <!-- Left Column: Contextual Messaging -->
+            <div class="lg:col-span-5 space-y-8">
+                <div>
+                    <span class="inline-block text-[10px] tracking-[0.2em] font-bold text-primary uppercase mb-4 py-1 px-2 border border-outline-variant bg-surface-container-low">Connect With Intelligence</span>
+                    <h1 class="text-5xl font-black tracking-tighter text-on-surface leading-[0.95] mb-6">
+                        Scale your digital footprint.
+                    </h1>
+                    <p class="text-on-surface-variant text-lg leading-relaxed max-w-sm">
+                        Our AI agents are ready to deploy. Share your goals, and we'll engineer a marketing strategy with architectural precision.
+                    </p>
+                </div>
+                <div class="space-y-6 pt-4">
+                    <div class="flex items-center gap-4">
+                        <div class="card-icon">
+                            <span class="material-symbols-outlined text-primary">terminal</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-widest" style="color: #64748b;">Fast Deployment</p>
+                            <p class="text-sm font-medium">Ready in &lt; 24 hours</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="card-icon">
+                            <span class="material-symbols-outlined text-primary">query_stats</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-widest" style="color: #64748b;">Precision Analytics</p>
+                            <p class="text-sm font-medium">Real-time attribution</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column: Lead Gen Form -->
+            <div class="lg:col-span-7">
+                <form id="contact-form" class="glass-panel p-8 lg:p-12 shadow-2xl relative">
+                    <div class="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-primary/20 pointer-events-none"></div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Name Field -->
+                        <div class="form-group">
+                            <label class="form-label" for="name">Name *</label>
+                            <input type="text" id="name" name="name" class="input" placeholder="John Doe" required>
+                            <span class="form-error-text" id="name-error">Name is required</span>
+                        </div>
+                        
+                        <!-- Email Field (Validation State) -->
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email *</label>
+                            <div class="relative">
+                                <input type="email" id="email" name="email" class="input" placeholder="john@example.com" required>
+                                <span class="material-symbols-outlined" id="email-icon" style="position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); color: #10b981; display: none;">check_circle</span>
+                            </div>
+                            <span class="form-error-text" id="email-error">Please enter a valid email address</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Company Field -->
+                    <div class="form-group">
+                        <label class="form-label" for="company">Company</label>
+                        <input type="text" id="company" name="company" class="input" placeholder="Acme Digital">
+                    </div>
+                    
+                    <!-- Message Field -->
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea id="message" name="message" class="input textarea" placeholder="Tell us about your project..." rows="4"></textarea>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-purple btn-full" style="padding: 1.25rem;">
+                        Submit Inquiry
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                </form>
+                
+                <!-- Subtle Trust Element -->
+                <div class="mt-8 flex justify-between items-center px-4">
+                    <p class="text-[10px] tracking-widest" style="color: #64748b; text-transform: uppercase;">Secured by Aetheris Shield</p>
+                    <div class="flex gap-4">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfI0D8nCTI0lW4buUGCAo4gITb88dGI7I8g1RHX6FYybpQ7g6ufnS4-QONffAXJ3yk9WEWLcayxsEra2pG92eAYJU-26fGnSfsW2p2nPNopTtXU7h_3WBY2xQ5hjesYXy74AJbgqCRjHCnxWwvwarKkNGWTa2LNw9XzYXf5nDxASKhqiSgiOePmRJykyVbABFMXNcsZIjdt20ieP5c0HDV-HNW60_ou8MgACCLK975FwH5xlVb_GA_KApBHVkcAw_rML7ZTJ_KBUA" alt="ISO" style="height: 1rem; opacity: 0.4; filter: grayscale(1);">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMheIkhKqCYlUTpxRnilEIg6JObMC6-HinSTSp4Jrfr_cxisG-B6H_aSf_2o8O6jzU_CRyKrr7fapbXRBjiSWJ-RRaND0Gu9jC2rGE4NqVDsIAYyOXhARJqtX7mK1A3zJWWJapBy5B1d4wrnEAkPUV95UVR4Bz0bI8XrH1cUVLLxNo9YXWkG5x_dNSdbzZ_Ehh4DG7luJnau845OqTzkZ2NwORes0s-1V5074HjtpegziDKYTVJGQcYax0eLs8qzmOkbCdq1HBl3w" alt="GDPR" style="height: 1rem; opacity: 0.4; filter: grayscale(1);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">Aetheris AI</div>
+        <div class="footer-copyright">© 2024 Aetheris AI Digital. Architectural Precision.</div>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Security</a>
+            <a href="#" class="footer-link">Status</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/validators.js"></script>
+    <script src="js/router.js"></script>
+    <script>
+        // Form validation and submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contact-form');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const emailIcon = document.getElementById('email-icon');
+            
+            // Validate on blur
+            nameInput.addEventListener('blur', function() {
+                const result = Validators.validateField('name', this.value);
+                Validators.setFieldState(this, result.valid);
+                Validators.showError('name', result.valid ? '' : result.message);
+            });
+            
+            emailInput.addEventListener('blur', function() {
+                const result = Validators.validateField('email', this.value);
+                Validators.setFieldState(this, result.valid, true);
+                Validators.showError('email', result.valid ? '' : result.message);
+                
+                // Show check icon if valid
+                if (result.valid && this.value) {
+                    emailIcon.style.display = 'block';
+                } else {
+                    emailIcon.style.display = 'none';
+                }
+            });
+            
+            // Clear errors on input
+            nameInput.addEventListener('input', function() {
+                this.classList.remove('input-error');
+            });
+            
+            emailInput.addEventListener('input', function() {
+                this.classList.remove('input-error', 'input-success');
+                emailIcon.style.display = 'none';
+            });
+            
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    name: nameInput.value,
+                    email: emailInput.value,
+                    company: document.getElementById('company').value,
+                    message: document.getElementById('message').value
+                };
+                
+                // Validate all required fields
+                const nameResult = Validators.validateField('name', formData.name);
+                const emailResult = Validators.validateField('email', formData.email);
+                
+                Validators.setFieldState(nameInput, nameResult.valid);
+                Validators.setFieldState(emailInput, emailResult.valid, true);
+                Validators.showError('name', nameResult.valid ? '' : nameResult.message);
+                Validators.showError('email', emailResult.valid ? '' : emailResult.message);
+                
+                if (!nameResult.valid || !emailResult.valid) {
+                    Storage.showToast('Please fill in all required fields correctly', 'error');
+                    return;
+                }
+                
+                // Success - show toast and reset
+                Storage.showToast(`Thank you ${formData.name}! We'll contact you at ${formData.email}`, 'success');
+                form.reset();
+                emailIcon.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
