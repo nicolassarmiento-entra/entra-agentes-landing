@@ -10,13 +10,282 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/utilities.css">
     <link rel="stylesheet" href="css/components.css">
+    <style>
+        .favorites-section {
+            padding-top: 6rem;
+            padding-bottom: 5rem;
+            min-height: 100vh;
+        }
+
+        .favorites-container {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .favorites-header {
+            margin-bottom: 3rem;
+        }
+
+        .favorites-label {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .favorites-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            color: var(--on-surface);
+        }
+
+        @media (min-width: 768px) {
+            .favorites-title { font-size: 3rem; }
+        }
+
+        .favorites-count {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 0.5rem;
+        }
+
+        /* Grid */
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .favorites-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .favorites-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* Card */
+        .favorites-card {
+            background: rgba(28, 42, 65, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .favorites-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(180, 197, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .favorites-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .favorites-card-icon {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface-container-highest);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-lg);
+        }
+
+        .favorites-card-icon .material-symbols-outlined {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .favorites-card-platform {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.5rem;
+            background: var(--surface-container-highest);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-default);
+            color: var(--on-surface);
+        }
+
+        .favorites-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: var(--on-surface);
+            margin-bottom: 0.75rem;
+        }
+
+        .favorites-card-description {
+            font-size: 0.875rem;
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .favorites-card-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .favorites-card-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .favorites-card-btn.primary {
+            background: var(--primary);
+            color: var(--on-primary);
+            border: none;
+        }
+
+        .favorites-card-btn.primary:hover {
+            filter: brightness(1.1);
+        }
+
+        .favorites-card-btn.secondary {
+            background: transparent;
+            color: #94a3b8;
+            border: 1px solid var(--outline-variant);
+        }
+
+        .favorites-card-btn.secondary:hover {
+            background: var(--surface-bright);
+            color: var(--error);
+            border-color: var(--error);
+        }
+
+        .favorites-card-btn .material-symbols-outlined {
+            font-size: 1rem;
+        }
+
+        /* Empty State */
+        .favorites-empty {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .favorites-empty.visible {
+            display: flex;
+        }
+
+        .favorites-empty-icon {
+            width: 6rem;
+            height: 6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface-container-high);
+            border: 1px solid var(--outline-variant);
+            border-radius: 50%;
+            margin-bottom: 2rem;
+        }
+
+        .favorites-empty-icon .material-symbols-outlined {
+            font-size: 3rem;
+            color: #64748b;
+        }
+
+        .favorites-empty-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--on-surface);
+            margin-bottom: 0.5rem;
+        }
+
+        .favorites-empty-text {
+            font-size: 0.875rem;
+            color: var(--on-surface-variant);
+            margin-bottom: 2rem;
+            max-width: 24rem;
+        }
+
+        .favorites-empty-btn {
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: var(--on-primary);
+            font-size: 0.875rem;
+            font-weight: 700;
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .favorites-empty-btn:hover {
+            filter: brightness(1.1);
+        }
+
+        /* Clear All Button */
+        .favorites-clear {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--error);
+            color: var(--error);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 0 auto;
+        }
+
+        .favorites-clear.visible {
+            display: inline-flex;
+        }
+
+        .favorites-clear:hover {
+            background: rgba(255, 180, 171, 0.1);
+        }
+
+        .favorites-clear .material-symbols-outlined {
+            font-size: 1rem;
+        }
+    </style>
 </head>
-<body class="bg-background text-on-surface selection:bg-primary selection:text-on-primary">
+<body class="bg-background text-on-surface">
 
     <!-- Navbar -->
     <nav class="navbar">
         <a href="landing.html" class="navbar-logo">Aetheris AI</a>
-        <div class="navbar-links" style="display: none;" id="nav-links">
+        <div class="navbar-links" id="nav-links">
             <a href="landing.html" class="navbar-link">Solutions</a>
             <a href="catalog.html" class="navbar-link">Agents</a>
             <a href="favorites.html" class="navbar-link active">Favorites</a>
@@ -28,27 +297,40 @@
         </div>
     </nav>
 
-    <main class="pt-24 pb-20 px-8">
-        <div class="container">
-            <div class="page-header">
-                <span class="page-subtitle">Your Selection</span>
-                <h1 class="page-title">Saved Agents</h1>
-            </div>
-            
+    <!-- Main Content -->
+    <section class="favorites-section">
+        <div class="favorites-container">
+            <!-- Header -->
+            <header class="favorites-header">
+                <span class="favorites-label">Your Selection</span>
+                <h1 class="favorites-title">Saved Agents</h1>
+                <p class="favorites-count" id="favorites-count">0 agents saved</p>
+            </header>
+
             <!-- Favorites Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="favorites-grid">
-                <!-- Rendered by JS -->
+            <div class="favorites-grid" id="favorites-grid">
+                <!-- Dynamic content -->
             </div>
-            
+
             <!-- Empty State -->
-            <div class="empty-state" id="empty-state" style="display: none;">
-                <span class="material-symbols-outlined">favorite_border</span>
-                <h3>No favorites yet</h3>
-                <p class="text-muted">Start exploring our agents and save your favorites</p>
-                <a href="catalog.html" class="btn btn-primary" style="margin-top: 1rem;">Browse Agents</a>
+            <div class="favorites-empty" id="favorites-empty">
+                <div class="favorites-empty-icon">
+                    <span class="material-symbols-outlined">favorite_border</span>
+                </div>
+                <h2 class="favorites-empty-title">No favorites yet</h2>
+                <p class="favorites-empty-text">Start exploring our agents and save the ones that interest you. Your saved agents will appear here.</p>
+                <a href="catalog.html" class="favorites-empty-btn">Browse Agents</a>
+            </div>
+
+            <!-- Clear All -->
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="favorites-clear" id="clear-all-btn" onclick="clearAllFavorites()">
+                    <span class="material-symbols-outlined">delete_sweep</span>
+                    Clear All Favorites
+                </button>
             </div>
         </div>
-    </main>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -65,33 +347,78 @@
     <!-- Scripts -->
     <script src="js/data.js"></script>
     <script src="js/storage.js"></script>
-    <script src="js/components.js"></script>
-    <script src="js/router.js"></script>
     <script>
-        // Render favorites
+        function getPlatformIcon(platform) {
+            const icons = {
+                'TikTok': 'movie',
+                'Instagram': 'photo_camera',
+                'LinkedIn': 'article',
+                'Facebook': 'share',
+                'X/Twitter': 'chat',
+                'Multi-Channel': 'campaign',
+                'Community': 'forum',
+                'Analytics': 'monitoring'
+            };
+            return icons[platform] || 'smart_toy';
+        }
+
         function renderFavorites() {
             const favorites = Storage.getFavoriteServices();
             const grid = document.getElementById('favorites-grid');
-            const emptyState = document.getElementById('empty-state');
-            
+            const emptyState = document.getElementById('favorites-empty');
+            const countLabel = document.getElementById('favorites-count');
+            const clearBtn = document.getElementById('clear-all-btn');
+
+            countLabel.textContent = `${favorites.length} agent${favorites.length !== 1 ? 's' : ''} saved`;
+
             if (favorites.length === 0) {
                 grid.style.display = 'none';
-                emptyState.style.display = 'block';
+                emptyState.classList.add('visible');
+                clearBtn.classList.remove('visible');
             } else {
                 grid.style.display = 'grid';
-                emptyState.style.display = 'none';
-                grid.innerHTML = favorites.map(service => Components.serviceCard(service)).join('');
+                emptyState.classList.remove('visible');
+                clearBtn.classList.add('visible');
+
+                grid.innerHTML = favorites.map(service => `
+                    <div class="favorites-card">
+                        <div class="favorites-card-header">
+                            <div class="favorites-card-icon">
+                                <span class="material-symbols-outlined">${getPlatformIcon(service.platform[0])}</span>
+                            </div>
+                            <span class="favorites-card-platform">${service.platform[0]}</span>
+                        </div>
+                        <h3 class="favorites-card-title">${service.name}</h3>
+                        <p class="favorites-card-description">${service.shortDescription}</p>
+                        <div class="favorites-card-actions">
+                            <a href="details.html?id=${service.id}" class="favorites-card-btn primary">
+                                <span>View Details</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </a>
+                            <button class="favorites-card-btn secondary" onclick="removeFavorite('${service.id}')">
+                                <span class="material-symbols-outlined">favorite</span>
+                                <span>Remove</span>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
             }
         }
-        
-        // Toggle favorite
-        function toggleFavorite(serviceId) {
+
+        function removeFavorite(serviceId) {
             Storage.toggleFavorite(serviceId);
             renderFavorites();
         }
-        window.toggleFavorite = toggleFavorite;
-        
-        // Initialize
+
+        function clearAllFavorites() {
+            if (confirm('Are you sure you want to remove all favorites?')) {
+                Storage.clearFavorites();
+                renderFavorites();
+            }
+        }
+        window.clearAllFavorites = clearAllFavorites;
+        window.removeFavorite = removeFavorite;
+
         document.addEventListener('DOMContentLoaded', renderFavorites);
     </script>
 </body>
