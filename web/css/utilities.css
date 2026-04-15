@@ -367,6 +367,7 @@ input, textarea, select {
 .blur-\[100px\] { filter: blur(100px); }
 .brightness-110 { filter: brightness(1.1); }
 .grayscale { filter: grayscale(100%); }
+.shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
 
 /* ========== Backdrop Filter ========== */
 .backdrop-blur { backdrop-filter: blur(8px); }

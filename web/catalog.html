@@ -10,13 +10,376 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/utilities.css">
     <link rel="stylesheet" href="css/components.css">
+    <style>
+        .catalog-section {
+            padding-top: 6rem;
+            padding-bottom: 5rem;
+            min-height: 100vh;
+        }
+
+        .catalog-container {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .catalog-header {
+            margin-bottom: 3rem;
+        }
+
+        .catalog-header-top {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .catalog-header-top {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+        }
+
+        .catalog-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .catalog-badge {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+
+        .catalog-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            color: var(--on-surface);
+        }
+
+        @media (min-width: 768px) {
+            .catalog-title { font-size: 3rem; }
+        }
+
+        /* Search */
+        .catalog-search {
+            position: relative;
+            width: 100%;
+        }
+
+        @media (min-width: 640px) {
+            .catalog-search { width: 16rem; }
+        }
+
+        .catalog-search input {
+            width: 100%;
+            padding: 0.625rem 1rem 0.625rem 2.5rem;
+            background: var(--surface-container-lowest);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-md);
+            color: var(--on-surface);
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .catalog-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .catalog-search .material-symbols-outlined {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-size: 1.25rem;
+            transition: color 0.2s ease;
+        }
+
+        .catalog-search:focus-within .material-symbols-outlined {
+            color: var(--primary);
+        }
+
+        /* Filters */
+        .catalog-filters {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: flex-start;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(68, 71, 77, 0.3);
+        }
+
+        .catalog-filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .catalog-filter-label {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #64748b;
+        }
+
+        .catalog-filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .catalog-filter-chip {
+            padding: 0.375rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            background: var(--secondary-container);
+            color: var(--on-secondary-container);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .catalog-filter-chip:hover {
+            background: var(--surface-bright);
+        }
+
+        .catalog-filter-chip.active {
+            background: var(--primary);
+            color: var(--on-primary);
+        }
+
+        .catalog-filter-divider {
+            height: 2.5rem;
+            width: 1px;
+            background: rgba(68, 71, 77, 0.3);
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .catalog-filter-divider { display: block; }
+        }
+
+        /* Grid */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .catalog-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* Card */
+        .catalog-card {
+            background: rgba(28, 42, 65, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .catalog-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(180, 197, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .catalog-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .catalog-card-icon {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface-container-highest);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-lg);
+            transition: border-color 0.2s ease;
+        }
+
+        .catalog-card:hover .catalog-card-icon {
+            border-color: rgba(180, 197, 255, 0.5);
+        }
+
+        .catalog-card-icon .material-symbols-outlined {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .catalog-card-platform {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.5rem;
+            background: var(--surface-container-highest);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-default);
+            color: var(--on-surface);
+        }
+
+        .catalog-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: var(--on-surface);
+            margin-bottom: 0.75rem;
+        }
+
+        .catalog-card-description {
+            font-size: 0.875rem;
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .catalog-card-button {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-md);
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--on-surface);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .catalog-card-button:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--on-primary);
+        }
+
+        .catalog-card-button:active {
+            transform: scale(0.98);
+        }
+
+        .catalog-card-button .material-symbols-outlined {
+            font-size: 1rem;
+        }
+
+        /* Promo Section */
+        .catalog-promo {
+            margin-top: 5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .catalog-promo {
+                grid-template-columns: repeat(12, 1fr);
+            }
+        }
+
+        .catalog-promo-content {
+            background: var(--surface-container-high);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (min-width: 1024px) {
+            .catalog-promo-content { grid-column: span 7; }
+        }
+
+        .catalog-promo-badge {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .catalog-promo-title {
+            font-size: 1.75rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            color: var(--on-surface);
+            margin-bottom: 1rem;
+        }
+
+        .catalog-promo-description {
+            font-size: 0.875rem;
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .catalog-promo-image {
+            position: relative;
+            min-height: 20rem;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+        }
+
+        @media (min-width: 1024px) {
+            .catalog-promo-image { grid-column: span 5; }
+        }
+
+        .catalog-promo-image img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .catalog-promo-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(180, 197, 255, 0.1);
+            mix-blend-mode: overlay;
+        }
+    </style>
 </head>
-<body class="bg-background text-on-surface selection:bg-primary selection:text-on-primary">
+<body class="bg-background text-on-surface">
 
     <!-- Navbar -->
     <nav class="navbar">
         <a href="landing.html" class="navbar-logo">Aetheris AI</a>
-        <div class="navbar-links" style="display: none;" id="nav-links">
+        <div class="navbar-links" id="nav-links">
             <a href="landing.html" class="navbar-link">Solutions</a>
             <a href="catalog.html" class="navbar-link active">Agents</a>
             <a href="#" class="navbar-link">Case Studies</a>
@@ -31,67 +394,65 @@
         </div>
     </nav>
 
-    <main class="pt-24 pb-20 px-8">
-        <div class="container">
-            <!-- Header Section -->
-            <header class="mb-12">
-                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
-                    <div class="space-y-2">
-                        <span class="text-[10px] tracking-[0.2em] uppercase font-bold text-primary">Deployment Hub</span>
-                        <h1 class="text-4xl md:text-5xl font-black tracking-tight text-on-surface">Service Catalog</h1>
+    <!-- Main Content -->
+    <section class="catalog-section">
+        <div class="catalog-container">
+            <!-- Header -->
+            <header class="catalog-header">
+                <div class="catalog-header-top">
+                    <div class="catalog-title-group">
+                        <span class="catalog-badge">Deployment Hub</span>
+                        <h1 class="catalog-title">Service Catalog</h1>
                     </div>
-                    <!-- Search -->
-                    <div class="search-container">
-                        <span class="material-symbols-outlined search-icon">search</span>
-                        <input type="text" class="input search-input" placeholder="Search Agents..." id="search-input">
+                    <div class="catalog-search">
+                        <span class="material-symbols-outlined">search</span>
+                        <input type="text" placeholder="Search Agents..." id="search-input">
                     </div>
                 </div>
 
-                <!-- Filter Chips -->
-                <div class="mt-8 flex flex-wrap gap-8 items-center border-b border-outline-variant/30 pb-6">
-                    <div class="flex flex-col gap-3">
-                        <span class="text-[10px] tracking-widest uppercase font-bold" style="color: #64748b;">Platforms</span>
-                        <div class="flex gap-2">
-                            <button class="filter-tab active" data-filter="all" data-filter-type="platform">All</button>
-                            <button class="filter-tab" data-filter="tiktok" data-filter-type="platform">TikTok</button>
-                            <button class="filter-tab" data-filter="instagram" data-filter-type="platform">Instagram</button>
-                            <button class="filter-tab" data-filter="linkedin" data-filter-type="platform">LinkedIn</button>
+                <!-- Filters -->
+                <div class="catalog-filters">
+                    <div class="catalog-filter-group">
+                        <span class="catalog-filter-label">Platforms</span>
+                        <div class="catalog-filter-chips">
+                            <button class="catalog-filter-chip active" data-filter="all" data-type="platform">All</button>
+                            <button class="catalog-filter-chip" data-filter="tiktok" data-type="platform">TikTok</button>
+                            <button class="catalog-filter-chip" data-filter="instagram" data-type="platform">Instagram</button>
+                            <button class="catalog-filter-chip" data-filter="linkedin" data-type="platform">LinkedIn</button>
                         </div>
                     </div>
-                    <div class="h-10 w-px bg-outline-variant/30 hidden md:block"></div>
-                    <div class="flex flex-col gap-3">
-                        <span class="text-[10px] tracking-widest uppercase font-bold" style="color: #64748b;">Content Type</span>
-                        <div class="flex gap-2">
-                            <button class="filter-tab" data-filter="video" data-filter-type="category">Video</button>
-                            <button class="filter-tab" data-filter="copy" data-filter-type="category">Copy</button>
-                            <button class="filter-tab" data-filter="static" data-filter-type="category">Static</button>
-                            <button class="filter-tab" data-filter="analytics" data-filter-type="category">Analytics</button>
+                    <div class="catalog-filter-divider"></div>
+                    <div class="catalog-filter-group">
+                        <span class="catalog-filter-label">Content Type</span>
+                        <div class="catalog-filter-chips">
+                            <button class="catalog-filter-chip" data-filter="video" data-type="category">Video</button>
+                            <button class="catalog-filter-chip" data-filter="copy" data-type="category">Copy</button>
+                            <button class="catalog-filter-chip" data-filter="static" data-type="category">Static</button>
+                            <button class="catalog-filter-chip" data-filter="analytics" data-type="category">Analytics</button>
                         </div>
                     </div>
                 </div>
             </header>
 
-            <!-- Agent Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-grid">
-                <!-- Cards renderizados via JS -->
+            <!-- Grid -->
+            <div class="catalog-grid" id="catalog-grid">
+                <!-- Dynamic content -->
             </div>
 
-            <!-- Featured Promo -->
-            <section style="margin-top: 5rem; grid-template-columns: 1fr; display: grid; gap: 2rem;" class="grid grid-cols-1 lg:grid-cols-12">
-                <div class="lg:col-span-7 glass-card" style="padding: 2.5rem;">
-                    <span class="section-subtitle">Enterprise Customization</span>
-                    <h2 class="section-title" style="margin-bottom: 1.5rem;">Build Your Own Dedicated Agent</h2>
-                    <p class="card-description">Don't see a specific solution? Our engineering team can fine-tune a custom LLM specifically for your brand voice and historical data.</p>
-                    <a href="contact.html" class="btn btn-primary" style="margin-top: 1rem;">Schedule Consultation</a>
+            <!-- Promo -->
+            <div class="catalog-promo">
+                <div class="catalog-promo-content">
+                    <span class="catalog-promo-badge">Enterprise Customization</span>
+                    <h2 class="catalog-promo-title">Build Your Own Dedicated Agent</h2>
+                    <p class="catalog-promo-description">Don't see a specific solution? Our engineering team can fine-tune a custom LLM specifically for your brand voice and historical data.</p>
+                    <a href="contact.html" class="btn btn-primary" style="width: fit-content;">Schedule Consultation</a>
                 </div>
-                <div class="lg:col-span-5 relative" style="min-height: 20rem; overflow: hidden; border-radius: var(--radius-xl);">
-                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqK9v-k8F-2cOJAei37o3rp3QSTt1_PS_y4-cVBvmispvLok2WuojqYeZoleflWoZ70oOe-ZAyYAevkTEO7XRLQpFTMnkGCPFGRv2ImehTlMQJRdjmIO9PYqyCmL7UOCvQbPpcNRKNfVT7-7KmI6bslla6Yv5mLEhmetvD8q4HRFTncBLGmYra8BIkvGd9uCbCf3DioOE6JH7fA4HNckEGDBb2jDr2ANvILUD-li_2PWshmtrEB5CDQIj_hutQ9QgVhWi6BOCAt5M" 
-                         alt="Enterprise" 
-                         style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+                <div class="catalog-promo-image">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqK9v-k8F-2cOJAei37o3rp3QSTt1_PS_y4-cVBvmispvLok2WuojqYeZoleflWoZ70oOe-ZAyYAevkTEO7XRLQpFTMnkGCPFGRv2ImehTlMQJRdjmIO9PYqyCmL7UOCvQbPpcNRKNfVT7-7KmI6bslla6Yv5mLEhmetvD8q4HRFTncBLGmYra8BIkvGd9uCbCf3DioOE6JH7fA4HNckEGDBb2jDr2ANvILUD-li_2PWshmtrEB5CDQIj_hutQ9QgVhWi6BOCAt5M" alt="Enterprise">
                 </div>
-            </section>
+            </div>
         </div>
-    </main>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -108,64 +469,95 @@
     <!-- Scripts -->
     <script src="js/data.js"></script>
     <script src="js/storage.js"></script>
-    <script src="js/components.js"></script>
-    <script src="js/router.js"></script>
     <script>
-        // Render services
-        function renderServices(services) {
-            const grid = document.getElementById('services-grid');
-            if (grid) {
-                grid.innerHTML = services.map(service => Components.serviceCard(service)).join('');
-            }
-        }
-        
-        // Filter functionality
         let activePlatform = 'all';
         let activeCategory = 'all';
-        
-        function filterServices() {
-            let filtered = SERVICES;
+
+        function getPlatformIcon(platform) {
+            const icons = {
+                'TikTok': 'movie',
+                'Instagram': 'photo_camera',
+                'LinkedIn': 'article',
+                'Facebook': 'share',
+                'X/Twitter': 'chat',
+                'Multi-Channel': 'campaign',
+                'Community': 'forum',
+                'Analytics': 'monitoring'
+            };
+            return icons[platform] || 'smart_toy';
+        }
+
+        function renderCatalog(services) {
+            const grid = document.getElementById('catalog-grid');
             
+            grid.innerHTML = services.map(service => `
+                <div class="catalog-card" onclick="window.location.href='details.html?id=${service.id}'">
+                    <div class="catalog-card-header">
+                        <div class="catalog-card-icon">
+                            <span class="material-symbols-outlined">${getPlatformIcon(service.platform[0])}</span>
+                        </div>
+                        <span class="catalog-card-platform">${service.platform[0]}</span>
+                    </div>
+                    <h3 class="catalog-card-title">${service.name}</h3>
+                    <p class="catalog-card-description">${service.shortDescription}</p>
+                    <button class="catalog-card-button">
+                        <span>View Details</span>
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function filterCatalog() {
+            let filtered = SERVICES;
+
             if (activePlatform !== 'all') {
-                filtered = filtered.filter(s => s.platform.some(p => p.toLowerCase().includes(activePlatform)));
+                filtered = filtered.filter(s => 
+                    s.platform.some(p => p.toLowerCase().includes(activePlatform))
+                );
             }
+            
             if (activeCategory !== 'all') {
                 filtered = filtered.filter(s => s.category.toLowerCase() === activeCategory);
             }
-            
-            renderServices(filtered);
+
+            renderCatalog(filtered);
         }
-        
+
         // Filter click handlers
         document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('filter-tab')) {
+            if (e.target.classList.contains('catalog-filter-chip')) {
                 const filter = e.target.dataset.filter;
-                const type = e.target.dataset.filterType;
-                
+                const type = e.target.dataset.type;
+
                 // Update active state
-                e.target.parentElement.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+                const siblings = e.target.parentElement.querySelectorAll('.catalog-filter-chip');
+                siblings.forEach(chip => chip.classList.remove('active'));
                 e.target.classList.add('active');
-                
+
                 if (type === 'platform') {
                     activePlatform = filter;
                 } else {
                     activeCategory = filter;
                 }
-                
-                filterServices();
+
+                filterCatalog();
             }
         });
-        
-        // Toggle favorite
-        function toggleFavorite(serviceId) {
-            Storage.toggleFavorite(serviceId);
-            renderServices(SERVICES);
-        }
-        window.toggleFavorite = toggleFavorite;
-        
+
+        // Search
+        document.getElementById('search-input').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const filtered = SERVICES.filter(s => 
+                s.name.toLowerCase().includes(query) ||
+                s.shortDescription.toLowerCase().includes(query)
+            );
+            renderCatalog(filtered);
+        });
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            renderServices(SERVICES);
+            renderCatalog(SERVICES);
         });
     </script>
 </body>

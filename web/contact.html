@@ -10,13 +10,344 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/utilities.css">
     <link rel="stylesheet" href="css/components.css">
+    <style>
+        .contact-section {
+            padding-top: 8rem;
+            padding-bottom: 6rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-glow-top {
+            position: absolute;
+            top: -10%;
+            left: -5%;
+            width: 40%;
+            height: 60%;
+            background: var(--primary);
+            filter: blur(120px);
+            opacity: 0.05;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .contact-glow-bottom {
+            position: absolute;
+            bottom: -10%;
+            right: -5%;
+            width: 40%;
+            height: 60%;
+            background: var(--on-primary-container);
+            filter: blur(120px);
+            opacity: 0.05;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 80rem;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-badge {
+            display: inline-block;
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--primary);
+            padding: 0.25rem 0.5rem;
+            border: 1px solid var(--outline-variant);
+            background: var(--surface-container-low);
+            margin-bottom: 1rem;
+        }
+
+        .contact-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            line-height: 0.95;
+            color: var(--on-surface);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-description {
+            font-size: 1.125rem;
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            max-width: 28rem;
+        }
+
+        .contact-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding-top: 1rem;
+        }
+
+        .contact-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-feature-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface-container-highest);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-lg);
+        }
+
+        .contact-feature-icon .material-symbols-outlined {
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        .contact-feature-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .contact-feature-label {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #64748b;
+        }
+
+        .contact-feature-value {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--on-surface);
+        }
+
+        .contact-form-container {
+            position: relative;
+        }
+
+        .contact-form-panel {
+            background: rgba(28, 42, 65, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-form-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 6rem;
+            height: 6rem;
+            border-top: 2px solid rgba(180, 197, 255, 0.2);
+            border-right: 2px solid rgba(180, 197, 255, 0.2);
+            border-top-right-radius: var(--radius-xl);
+            pointer-events: none;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .contact-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .contact-form-label {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #94a3b8;
+        }
+
+        .contact-form-input {
+            width: 100%;
+            padding: 1rem;
+            background: var(--surface-container-lowest);
+            border: 1px solid var(--outline-variant);
+            border-radius: var(--radius-lg);
+            color: var(--on-surface);
+            font-size: 0.875rem;
+            font-family: inherit;
+            transition: border-color 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .contact-form-input::placeholder {
+            color: #475569;
+        }
+
+        .contact-form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .contact-form-input.error {
+            border-color: var(--error);
+        }
+
+        .contact-form-input.success {
+            border-color: #10b981;
+        }
+
+        .contact-form-textarea {
+            resize: vertical;
+            min-height: 8rem;
+            line-height: 1.5;
+        }
+
+        .contact-form-input-wrapper {
+            position: relative;
+        }
+
+        .contact-form-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #10b981;
+            font-variation-settings: 'FILL' 1;
+            display: none;
+        }
+
+        .contact-form-icon.visible {
+            display: block;
+        }
+
+        .contact-form-error {
+            color: var(--error);
+            font-size: 0.625rem;
+            display: none;
+        }
+
+        .contact-form-error.visible {
+            display: block;
+        }
+
+        .contact-form-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: #8b5cf6;
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 0.5rem;
+        }
+
+        .contact-form-button:hover {
+            background: #7c3aed;
+        }
+
+        .contact-form-button:active {
+            transform: scale(0.98);
+        }
+
+        .contact-form-button .material-symbols-outlined {
+            font-size: 1.25rem;
+            transition: transform 0.2s ease;
+        }
+
+        .contact-form-button:hover .material-symbols-outlined {
+            transform: translateX(0.25rem);
+        }
+
+        .contact-trust {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding: 0 1rem;
+        }
+
+        .contact-trust-text {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #64748b;
+        }
+
+        .contact-trust-logos {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contact-trust-logo {
+            height: 1rem;
+            opacity: 0.4;
+            filter: grayscale(1);
+        }
+
+        @media (min-width: 768px) {
+            .contact-grid {
+                grid-template-columns: repeat(12, 1fr);
+            }
+
+            .contact-info {
+                grid-column: span 5;
+            }
+
+            .contact-form-container {
+                grid-column: span 7;
+            }
+
+            .contact-form-panel {
+                padding: 3rem;
+            }
+        }
+    </style>
 </head>
-<body class="bg-background text-on-surface selection:bg-primary selection:text-on-primary">
+<body class="bg-background text-on-surface">
 
     <!-- Navbar -->
     <nav class="navbar">
         <a href="landing.html" class="navbar-logo">Aetheris AI</a>
-        <div class="navbar-links" style="display: none;" id="nav-links">
+        <div class="navbar-links" id="nav-links">
             <a href="landing.html" class="navbar-link">Solutions</a>
             <a href="catalog.html" class="navbar-link">Agents</a>
             <a href="#" class="navbar-link">Case Studies</a>
@@ -32,94 +363,86 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="pt-24 pb-24 min-h-screen flex flex-col items-center px-6 overflow-hidden relative">
+    <main class="contact-section">
         <!-- Glow Effects -->
-        <div class="absolute top-[-10%] left-[-5%] w-[40%] h-[60%] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
-        <div class="absolute bottom-[-10%] right-[-5%] w-[40%] h-[60%] bg-on-primary-container/5 blur-[120px] rounded-full pointer-events-none"></div>
-        
-        <div class="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative z-10">
-            <!-- Left Column: Contextual Messaging -->
-            <div class="lg:col-span-5 space-y-8">
+        <div class="contact-glow-top"></div>
+        <div class="contact-glow-bottom"></div>
+
+        <div class="contact-grid">
+            <!-- Left Column: Info -->
+            <div class="contact-info">
                 <div>
-                    <span class="inline-block text-[10px] tracking-[0.2em] font-bold text-primary uppercase mb-4 py-1 px-2 border border-outline-variant bg-surface-container-low">Connect With Intelligence</span>
-                    <h1 class="text-5xl font-black tracking-tighter text-on-surface leading-[0.95] mb-6">
-                        Scale your digital footprint.
-                    </h1>
-                    <p class="text-on-surface-variant text-lg leading-relaxed max-w-sm">
+                    <span class="contact-badge">Connect With Intelligence</span>
+                    <h1 class="contact-title">Scale your digital footprint.</h1>
+                    <p class="contact-description">
                         Our AI agents are ready to deploy. Share your goals, and we'll engineer a marketing strategy with architectural precision.
                     </p>
                 </div>
-                <div class="space-y-6 pt-4">
-                    <div class="flex items-center gap-4">
-                        <div class="card-icon">
-                            <span class="material-symbols-outlined text-primary">terminal</span>
+                <div class="contact-features">
+                    <div class="contact-feature">
+                        <div class="contact-feature-icon">
+                            <span class="material-symbols-outlined">terminal</span>
                         </div>
-                        <div>
-                            <p class="text-[10px] font-bold uppercase tracking-widest" style="color: #64748b;">Fast Deployment</p>
-                            <p class="text-sm font-medium">Ready in &lt; 24 hours</p>
+                        <div class="contact-feature-text">
+                            <span class="contact-feature-label">Fast Deployment</span>
+                            <span class="contact-feature-value">Ready in &lt; 24 hours</span>
                         </div>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <div class="card-icon">
-                            <span class="material-symbols-outlined text-primary">query_stats</span>
+                    <div class="contact-feature">
+                        <div class="contact-feature-icon">
+                            <span class="material-symbols-outlined">query_stats</span>
                         </div>
-                        <div>
-                            <p class="text-[10px] font-bold uppercase tracking-widest" style="color: #64748b;">Precision Analytics</p>
-                            <p class="text-sm font-medium">Real-time attribution</p>
+                        <div class="contact-feature-text">
+                            <span class="contact-feature-label">Precision Analytics</span>
+                            <span class="contact-feature-value">Real-time attribution</span>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Right Column: Lead Gen Form -->
-            <div class="lg:col-span-7">
-                <form id="contact-form" class="glass-panel p-8 lg:p-12 shadow-2xl relative">
-                    <div class="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-primary/20 pointer-events-none"></div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <!-- Name Field -->
-                        <div class="form-group">
-                            <label class="form-label" for="name">Name *</label>
-                            <input type="text" id="name" name="name" class="input" placeholder="John Doe" required>
-                            <span class="form-error-text" id="name-error">Name is required</span>
-                        </div>
-                        
-                        <!-- Email Field (Validation State) -->
-                        <div class="form-group">
-                            <label class="form-label" for="email">Email *</label>
-                            <div class="relative">
-                                <input type="email" id="email" name="email" class="input" placeholder="john@example.com" required>
-                                <span class="material-symbols-outlined" id="email-icon" style="position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); color: #10b981; display: none;">check_circle</span>
+
+            <!-- Right Column: Form -->
+            <div class="contact-form-container">
+                <div class="contact-form-panel">
+                    <form id="contact-form" class="contact-form">
+                        <div class="contact-form-row">
+                            <div class="contact-form-group">
+                                <label class="contact-form-label" for="name">Name</label>
+                                <input type="text" id="name" name="name" class="contact-form-input" placeholder="John Doe">
+                                <span class="contact-form-error" id="name-error">Name is required</span>
                             </div>
-                            <span class="form-error-text" id="email-error">Please enter a valid email address</span>
+                            <div class="contact-form-group">
+                                <label class="contact-form-label" for="email">Email</label>
+                                <div class="contact-form-input-wrapper">
+                                    <input type="email" id="email" name="email" class="contact-form-input" placeholder="alex@tech.co">
+                                    <span class="material-symbols-outlined contact-form-icon" id="email-icon">check_circle</span>
+                                </div>
+                                <span class="contact-form-error" id="email-error">Please enter a valid email</span>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <!-- Company Field -->
-                    <div class="form-group">
-                        <label class="form-label" for="company">Company</label>
-                        <input type="text" id="company" name="company" class="input" placeholder="Acme Digital">
-                    </div>
-                    
-                    <!-- Message Field -->
-                    <div class="form-group">
-                        <label class="form-label" for="message">Message</label>
-                        <textarea id="message" name="message" class="input textarea" placeholder="Tell us about your project..." rows="4"></textarea>
-                    </div>
-                    
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn btn-purple btn-full" style="padding: 1.25rem;">
-                        Submit Inquiry
-                        <span class="material-symbols-outlined">arrow_forward</span>
-                    </button>
-                </form>
-                
-                <!-- Subtle Trust Element -->
-                <div class="mt-8 flex justify-between items-center px-4">
-                    <p class="text-[10px] tracking-widest" style="color: #64748b; text-transform: uppercase;">Secured by Aetheris Shield</p>
-                    <div class="flex gap-4">
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfI0D8nCTI0lW4buUGCAo4gITb88dGI7I8g1RHX6FYybpQ7g6ufnS4-QONffAXJ3yk9WEWLcayxsEra2pG92eAYJU-26fGnSfsW2p2nPNopTtXU7h_3WBY2xQ5hjesYXy74AJbgqCRjHCnxWwvwarKkNGWTa2LNw9XzYXf5nDxASKhqiSgiOePmRJykyVbABFMXNcsZIjdt20ieP5c0HDV-HNW60_ou8MgACCLK975FwH5xlVb_GA_KApBHVkcAw_rML7ZTJ_KBUA" alt="ISO" style="height: 1rem; opacity: 0.4; filter: grayscale(1);">
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMheIkhKqCYlUTpxRnilEIg6JObMC6-HinSTSp4Jrfr_cxisG-B6H_aSf_2o8O6jzU_CRyKrr7fapbXRBjiSWJ-RRaND0Gu9jC2rGE4NqVDsIAYyOXhARJqtX7mK1A3zJWWJapBy5B1d4wrnEAkPUV95UVR4Bz0bI8XrH1cUVLLxNo9YXWkG5x_dNSdbzZ_Ehh4DG7luJnau845OqTzkZ2NwORes0s-1V5074HjtpegziDKYTVJGQcYax0eLs8qzmOkbCdq1HBl3w" alt="GDPR" style="height: 1rem; opacity: 0.4; filter: grayscale(1);">
+
+                        <div class="contact-form-group">
+                            <label class="contact-form-label" for="company">Company</label>
+                            <input type="text" id="company" name="company" class="contact-form-input" placeholder="Acme Digital">
+                        </div>
+
+                        <div class="contact-form-group">
+                            <label class="contact-form-label" for="message">Message</label>
+                            <textarea id="message" name="message" class="contact-form-input contact-form-textarea" placeholder="Tell us about your project..."></textarea>
+                        </div>
+
+                        <button type="submit" class="contact-form-button">
+                            <span>Submit Inquiry</span>
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Trust Element -->
+                <div class="contact-trust">
+                    <p class="contact-trust-text">Secured by Aetheris Shield</p>
+                    <div class="contact-trust-logos">
+                        <img class="contact-trust-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfI0D8nCTI0lW4buUGCAo4gITb88dGI7I8g1RHX6FYybpQ7g6ufnS4-QONffAXJ3yk9WEWLcayxsEra2pG92eAYJU-26fGnSfsW2p2nPNopTtXU7h_3WBY2xQ5hjesYXy74AJbgqCRjHCnxWwvwarKkNGWTa2LNw9XzYXf5nDxASKhqiSgiOePmRJykyVbABFMXNcsZIjdt20ieP5c0HDV-HNW60_ou8MgACCLK975FwH5xlVb_GA_KApBHVkcAw_rML7ZTJ_KBUA" alt="ISO 27001">
+                        <img class="contact-trust-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMheIkhKqCYlUTpxRnilEIg6JObMC6-HinSTSp4Jrfr_cxisG-B6H_aSf_2o8O6jzU_CRyKrr7fapbXRBjiSWJ-RRaND0Gu9jC2rGE4NqVDsIAYyOXhARJqtX7mK1A3zJWWJapBy5B1d4wrnEAkPUV95UVR4Bz0bI8XrH1cUVLLxNo9YXWkG5x_dNSdbzZ_Ehh4DG7luJnau845OqTzkZ2NwORes0s-1V5074HjtpegziDKYTVJGQcYax0eLs8qzmOkbCdq1HBl3w" alt="GDPR">
                     </div>
                 </div>
             </div>
@@ -142,74 +465,102 @@
     <script src="js/data.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/validators.js"></script>
-    <script src="js/router.js"></script>
     <script>
-        // Form validation and submission
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('contact-form');
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
             const emailIcon = document.getElementById('email-icon');
-            
-            // Validate on blur
+
+            // Validate name on blur
             nameInput.addEventListener('blur', function() {
                 const result = Validators.validateField('name', this.value);
-                Validators.setFieldState(this, result.valid);
-                Validators.showError('name', result.valid ? '' : result.message);
-            });
-            
-            emailInput.addEventListener('blur', function() {
-                const result = Validators.validateField('email', this.value);
-                Validators.setFieldState(this, result.valid, true);
-                Validators.showError('email', result.valid ? '' : result.message);
-                
-                // Show check icon if valid
-                if (result.valid && this.value) {
-                    emailIcon.style.display = 'block';
+                if (result.valid) {
+                    this.classList.remove('error');
+                    this.classList.add('success');
+                    document.getElementById('name-error').classList.remove('visible');
                 } else {
-                    emailIcon.style.display = 'none';
+                    this.classList.remove('success');
+                    this.classList.add('error');
+                    document.getElementById('name-error').classList.add('visible');
                 }
             });
-            
+
+            // Validate email on blur
+            emailInput.addEventListener('blur', function() {
+                const result = Validators.validateField('email', this.value);
+                if (result.valid && this.value) {
+                    this.classList.remove('error');
+                    this.classList.add('success');
+                    emailIcon.classList.add('visible');
+                    document.getElementById('email-error').classList.remove('visible');
+                } else {
+                    this.classList.remove('success');
+                    this.classList.add('error');
+                    emailIcon.classList.remove('visible');
+                    document.getElementById('email-error').classList.add('visible');
+                }
+            });
+
             // Clear errors on input
             nameInput.addEventListener('input', function() {
-                this.classList.remove('input-error');
+                this.classList.remove('error', 'success');
+                document.getElementById('name-error').classList.remove('visible');
             });
-            
+
             emailInput.addEventListener('input', function() {
-                this.classList.remove('input-error', 'input-success');
-                emailIcon.style.display = 'none';
+                this.classList.remove('error', 'success');
+                emailIcon.classList.remove('visible');
+                document.getElementById('email-error').classList.remove('visible');
             });
-            
+
             // Form submission
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
-                
-                const formData = {
-                    name: nameInput.value,
-                    email: emailInput.value,
-                    company: document.getElementById('company').value,
-                    message: document.getElementById('message').value
-                };
-                
-                // Validate all required fields
-                const nameResult = Validators.validateField('name', formData.name);
-                const emailResult = Validators.validateField('email', formData.email);
-                
-                Validators.setFieldState(nameInput, nameResult.valid);
-                Validators.setFieldState(emailInput, emailResult.valid, true);
-                Validators.showError('name', nameResult.valid ? '' : nameResult.message);
-                Validators.showError('email', emailResult.valid ? '' : emailResult.message);
-                
+
+                const nameValue = nameInput.value.trim();
+                const emailValue = emailInput.value.trim();
+                const companyValue = document.getElementById('company').value.trim();
+                const messageValue = document.getElementById('message').value.trim();
+
+                const nameResult = Validators.validateField('name', nameValue);
+                const emailResult = Validators.validateField('email', emailValue);
+
+                // Update UI for name
+                if (nameResult.valid) {
+                    nameInput.classList.remove('error');
+                    nameInput.classList.add('success');
+                    document.getElementById('name-error').classList.remove('visible');
+                } else {
+                    nameInput.classList.remove('success');
+                    nameInput.classList.add('error');
+                    document.getElementById('name-error').classList.add('visible');
+                }
+
+                // Update UI for email
+                if (emailResult.valid) {
+                    emailInput.classList.remove('error');
+                    emailInput.classList.add('success');
+                    emailIcon.classList.add('visible');
+                    document.getElementById('email-error').classList.remove('visible');
+                } else {
+                    emailInput.classList.remove('success');
+                    emailInput.classList.add('error');
+                    emailIcon.classList.remove('visible');
+                    document.getElementById('email-error').classList.add('visible');
+                }
+
                 if (!nameResult.valid || !emailResult.valid) {
                     Storage.showToast('Please fill in all required fields correctly', 'error');
                     return;
                 }
-                
-                // Success - show toast and reset
-                Storage.showToast(`Thank you ${formData.name}! We'll contact you at ${formData.email}`, 'success');
+
+                // Success
+                Storage.showToast(`Thank you ${nameValue}! We'll contact you at ${emailValue}`, 'success');
                 form.reset();
-                emailIcon.style.display = 'none';
+                nameInput.classList.remove('success');
+                emailInput.classList.remove('success');
+                emailIcon.classList.remove('visible');
             });
         });
     </script>
