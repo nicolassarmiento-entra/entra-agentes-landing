@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { Navbar } from '../../shared/components/navbar.component';
 import { Footer } from '../../shared/components/footer.component';
 import { ServiceCard } from '../../shared/components/service-card.component';
-import { SERVICES, Service, getServicesByCategory, getServicesByPlatform, searchServices } from '../../core/data/services.data';
+import { services, Service, getServicesByCategory, getServicesByPlatform, searchServices } from '../../core/data/services.data';
 
 @Component({
   selector: 'app-catalog',
@@ -392,25 +392,25 @@ export class Catalog {
   activeCategory = signal('all');
 
   filteredServices = computed(() => {
-    let services = SERVICES;
+    let currentServices = services();
 
     const query = this.searchQuery().trim();
     if (query) {
-      services = searchServices(query);
+      currentServices = searchServices(query);
     } else {
       const platform = this.activePlatform();
       const category = this.activeCategory();
-      
+
       if (platform !== 'all') {
-        services = getServicesByPlatform(platform);
+        currentServices = getServicesByPlatform(platform);
       }
-      
+
       if (category !== 'all') {
-        services = services.filter(s => s.category.toLowerCase() === category.toLowerCase());
+        currentServices = currentServices.filter((s: Service) => s.category.toLowerCase() === category.toLowerCase());
       }
     }
 
-    return services;
+    return currentServices;
   });
 
   setPlatform(platform: string): void {

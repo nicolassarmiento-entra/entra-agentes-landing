@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { Navbar } from '../../shared/components/navbar.component';
 import { Footer } from '../../shared/components/footer.component';
 import { ServiceCard } from '../../shared/components/service-card.component';
-import { SERVICES, Service } from '../../core/data/services.data';
+import { services, Service } from '../../core/data/services.data';
 import { FavoritesService } from '../../core/services/favorites.service';
 
 @Component({
@@ -152,9 +152,9 @@ import { FavoritesService } from '../../core/services/favorites.service';
 })
 export class Favorites {
   private favoritesService = inject(FavoritesService);
-  
+
   favoriteServices = computed(() => {
     const favoriteIds = this.favoritesService.favorites();
-    return SERVICES.filter(s => favoriteIds.includes(s.id));
+    return services().filter((s: Service) => favoriteIds.includes(s.id));
   });
 }

@@ -1,3 +1,5 @@
+import { signal, computed } from '@angular/core';
+
 export interface Service {
   id: string;
   name: string;
@@ -15,7 +17,7 @@ export interface Service {
   featured: boolean;
 }
 
-export const SERVICES: Service[] = [
+const initialServices: Service[] = [
   {
     id: "viral-reels-creator",
     name: "Viral Reels Creator",
@@ -218,28 +220,80 @@ export const SERVICES: Service[] = [
   }
 ];
 
+// Signal para servicios con soporte CRUD
+export const services = signal<Service[]>(initialServices);
+
+// Funciones computed
+export const getServices = computed(() => services());
+
 export function getServiceById(id: string): Service | undefined {
-  return SERVICES.find(s => s.id === id);
+  return services().find(s => s.id === id);
 }
 
 export function getFeaturedServices(): Service[] {
-  return SERVICES.filter(s => s.featured);
+  return services().filter(s => s.featured);
 }
 
 export function getServicesByCategory(category: string): Service[] {
-  if (category === 'all') return SERVICES;
-  return SERVICES.filter(s => s.category.toLowerCase() === category.toLowerCase());
+  if (category === 'all') return services();
+  return services().filter(s => s.category.toLowerCase() === category.toLowerCase());
 }
 
 export function getServicesByPlatform(platform: string): Service[] {
-  if (platform === 'all') return SERVICES;
-  return SERVICES.filter(s => s.platform.some(p => p.toLowerCase().includes(platform.toLowerCase())));
+  if (platform === 'all') return services();
+  return services().filter(s => s.platform.some(p => p.toLowerCase().includes(platform.toLowerCase())));
 }
 
 export function searchServices(query: string): Service[] {
   const q = query.toLowerCase();
-  return SERVICES.filter(s => 
+  return services().filter(s => 
     s.name.toLowerCase().includes(q) || 
     s.shortDescription.toLowerCase().includes(q)
   );
+}
+
+// Funciones CRUD
+export function addService(service: Omit<Service, 'id'>): Service {
+  const newService: Service = {
+    ...service,
+    id: generateId(service.name)
+  };
+  services.update(current => [...current, newService]);
+  return newService;
+}
+
+export function removeService(id: string): boolean {
+  const currentServices = services();
+  const index = currentServices.findIndex(s => s.id === id);
+  
+  if (index === -1) return false;
+  
+  services.update(current => current.filter(s => s.id !== id));
+  return true;
+}
+
+export function updateService(id: string, updates: Partial<Service>): boolean {
+  const currentServices = services();
+  const index = currentServices.findIndex(s => s.id === id);
+  
+  if (index === -1) return false;
+  
+  services.update(current => 
+    current.map(s => s.id === id ? { ...s, ...updates } : s)
+  );
+  return true;
+}
+
+// Helper para generar ID único
+function generateId(name: string): string {
+  const baseId = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  const existingIds = services().map(s => s.id);
+  
+  if (!existingIds.includes(baseId)) return baseId;
+  
+  let counter = 1;
+  while (existingIds.includes(`${baseId}-${counter}`)) {
+    counter++;
+  }
+  return `${baseId}-${counter}`;
 }
