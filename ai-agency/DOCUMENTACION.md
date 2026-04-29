@@ -428,6 +428,3 @@ Una vez iniciado el servidor, visitar: `http://localhost:4200/`
 - **computed()**: Funciones reactivas calculadas
 
 ---
-
-*Documento generado para el proyecto universitario - Aetheris AI Landing*
-*Fecha: Abril 2026*
