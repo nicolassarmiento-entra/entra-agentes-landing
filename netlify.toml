@@ -1,0 +1,9 @@
+[build]
+  base = "ai-agency"
+  command = "npm install && npm run build"
+  publish = "dist/ai-agency/browser"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
