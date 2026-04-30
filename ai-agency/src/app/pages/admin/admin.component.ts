@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Navbar } from '../../shared/components/navbar.component';
 import { Footer } from '../../shared/components/footer.component';
-import { services, Service, addService, removeService, getServices } from '../../core/data/services.data';
+import { services, addService, removeService } from '../../core/data/services.data';
 import { FavoritesService } from '../../core/services/favorites.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { FavoritesService } from '../../core/services/favorites.service';
   imports: [FormsModule, RouterLink, Navbar, Footer],
   template: `
     <app-navbar />
-    
+
     <section class="admin-section">
       <div class="admin-container">
         <!-- Header -->
@@ -84,7 +84,14 @@ import { FavoritesService } from '../../core/services/favorites.service';
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Nombre del Servicio</label>
-                <input type="text" id="name" [(ngModel)]="newService.name" name="name" required placeholder="ej: AI Chatbot">
+                <input
+                  type="text"
+                  id="name"
+                  [(ngModel)]="newService.name"
+                  name="name"
+                  required
+                  placeholder="ej: AI Chatbot"
+                />
               </div>
               <div class="form-group">
                 <label for="category">Categoría</label>
@@ -101,20 +108,46 @@ import { FavoritesService } from '../../core/services/favorites.service';
             </div>
             <div class="form-group">
               <label for="shortDescription">Descripción Breve</label>
-              <input type="text" id="shortDescription" [(ngModel)]="newService.shortDescription" name="shortDescription" required placeholder="Breve descripción del servicio">
+              <input
+                type="text"
+                id="shortDescription"
+                [(ngModel)]="newService.shortDescription"
+                name="shortDescription"
+                required
+                placeholder="Breve descripción del servicio"
+              />
             </div>
             <div class="form-group">
               <label for="fullDescription">Descripción Completa</label>
-              <textarea id="fullDescription" [(ngModel)]="newService.fullDescription" name="fullDescription" required rows="3" placeholder="Descripción completa del servicio"></textarea>
+              <textarea
+                id="fullDescription"
+                [(ngModel)]="newService.fullDescription"
+                name="fullDescription"
+                required
+                rows="3"
+                placeholder="Descripción completa del servicio"
+              ></textarea>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="platform">Plataforma (separadas por coma)</label>
-                <input type="text" id="platform" [(ngModel)]="platformInput" name="platform" required placeholder="ej: TikTok, Instagram">
+                <input
+                  type="text"
+                  id="platform"
+                  [(ngModel)]="platformInput"
+                  name="platform"
+                  required
+                  placeholder="ej: TikTok, Instagram"
+                />
               </div>
               <div class="form-group">
                 <label for="statusType">Estado</label>
-                <select id="statusType" [(ngModel)]="newService.statusType" name="statusType" required>
+                <select
+                  id="statusType"
+                  [(ngModel)]="newService.statusType"
+                  name="statusType"
+                  required
+                >
                   <option value="active">Activo</option>
                   <option value="beta">Beta</option>
                   <option value="coming">Próximamente</option>
@@ -125,7 +158,11 @@ import { FavoritesService } from '../../core/services/favorites.service';
               {{ isCreating() ? 'Creando...' : 'Crear Servicio' }}
             </button>
             @if (message()) {
-              <div class="message" [class.success]="messageType() === 'success'" [class.error]="messageType() === 'error'">
+              <div
+                class="message"
+                [class.success]="messageType() === 'success'"
+                [class.error]="messageType() === 'error'"
+              >
                 {{ message() }}
               </div>
             }
@@ -136,13 +173,14 @@ import { FavoritesService } from '../../core/services/favorites.service';
         <div class="admin-table-wrapper">
           <h2 class="table-title">Todos los Agentes</h2>
           <div class="table-filters">
-            <input 
-              type="text" 
-              placeholder="Buscar agentes..." 
+            <input
+              type="text"
+              placeholder="Buscar agentes..."
               [(ngModel)]="searchQuery"
-              class="table-search">
+              class="table-search"
+            />
           </div>
-          
+
           <table class="admin-table">
             <thead>
               <tr>
@@ -169,23 +207,42 @@ import { FavoritesService } from '../../core/services/favorites.service';
                     <span class="platform-badge">{{ service.platform.join(', ') }}</span>
                   </td>
                   <td>
-                    <span class="status-badge" [class.active]="service.statusType === 'active'" [class.coming]="service.statusType === 'coming'" [class.beta]="service.statusType === 'beta'">
+                    <span
+                      class="status-badge"
+                      [class.active]="service.statusType === 'active'"
+                      [class.coming]="service.statusType === 'coming'"
+                      [class.beta]="service.statusType === 'beta'"
+                    >
                       {{ service.status }}
                     </span>
                   </td>
                   <td>
                     <div class="action-buttons">
-                      <a [routerLink]="['/details']" [queryParams]="{id: service.id}" class="action-btn" title="Ver Detalles">
+                      <a
+                        [routerLink]="['/details']"
+                        [queryParams]="{ id: service.id }"
+                        class="action-btn"
+                        title="Ver Detalles"
+                      >
                         <span class="material-symbols-outlined">visibility</span>
                       </a>
-                      <button 
-                        class="action-btn" 
+                      <button
+                        class="action-btn"
                         [class.active]="isFavorite(service.id)"
                         (click)="toggleFavorite(service.id)"
-                        [title]="isFavorite(service.id) ? 'Quitar de favoritos' : 'Agregar a favoritos'">
-                        <span class="material-symbols-outlined">{{ isFavorite(service.id) ? 'favorite' : 'favorite_border' }}</span>
+                        [title]="
+                          isFavorite(service.id) ? 'Quitar de favoritos' : 'Agregar a favoritos'
+                        "
+                      >
+                        <span class="material-symbols-outlined">{{
+                          isFavorite(service.id) ? 'favorite' : 'favorite_border'
+                        }}</span>
                       </button>
-                      <button class="action-btn delete" (click)="deleteService(service.id)" title="Eliminar">
+                      <button
+                        class="action-btn delete"
+                        (click)="deleteService(service.id)"
+                        title="Eliminar"
+                      >
                         <span class="material-symbols-outlined">delete</span>
                       </button>
                     </div>
@@ -200,454 +257,468 @@ import { FavoritesService } from '../../core/services/favorites.service';
 
     <app-footer />
   `,
-  styles: [`
-    .admin-section {
-      padding-top: 6rem;
-      padding-bottom: 5rem;
-      min-height: 100vh;
-    }
+  styles: [
+    `
+      .admin-section {
+        padding-top: 6rem;
+        padding-bottom: 5rem;
+        min-height: 100vh;
+      }
 
-    .admin-container {
-      max-width: 80rem;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+      .admin-container {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
 
-    /* Header */
-    .admin-header {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    @media (min-width: 768px) {
+      /* Header */
       .admin-header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
       }
-    }
 
-    .admin-header-left {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+      @media (min-width: 768px) {
+        .admin-header {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-end;
+        }
+      }
 
-    .admin-badge {
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--primary);
-    }
+      .admin-header-left {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
 
-    .admin-title {
-      font-size: 2.5rem;
-      font-weight: 900;
-      letter-spacing: -0.025em;
-      color: var(--on-surface);
-    }
+      .admin-badge {
+        font-size: 0.625rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--primary);
+      }
 
-    @media (min-width: 768px) {
-      .admin-title { font-size: 3rem; }
-    }
+      .admin-title {
+        font-size: 2.5rem;
+        font-weight: 900;
+        letter-spacing: -0.025em;
+        color: var(--on-surface);
+      }
 
-    .admin-header-right {
-      display: flex;
-      gap: 2rem;
-    }
+      @media (min-width: 768px) {
+        .admin-title {
+          font-size: 3rem;
+        }
+      }
 
-    .stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+      .admin-header-right {
+        display: flex;
+        gap: 2rem;
+      }
 
-    .stat-value {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--on-surface);
-    }
+      .stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-    .stat-label {
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--on-surface-variant);
-    }
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--on-surface);
+      }
 
-    /* Stats Grid */
-    .admin-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-bottom: 3rem;
-    }
+      .stat-label {
+        font-size: 0.625rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--on-surface-variant);
+      }
 
-    @media (min-width: 768px) {
+      /* Stats Grid */
       .admin-stats {
-        grid-template-columns: repeat(4, 1fr);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-bottom: 3rem;
       }
-    }
 
-    .stat-card {
-      background: var(--surface-container-high);
-      border: 1px solid var(--outline-variant);
-      border-radius: var(--radius-xl);
-      padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
+      @media (min-width: 768px) {
+        .admin-stats {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
 
-    .stat-card-icon {
-      width: 3rem;
-      height: 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--surface-container-lowest);
-      border-radius: var(--radius-lg);
-    }
+      .stat-card {
+        background: var(--surface-container-high);
+        border: 1px solid var(--outline-variant);
+        border-radius: var(--radius-xl);
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
 
-    .stat-card-icon .material-symbols-outlined {
-      font-size: 1.5rem;
-      color: var(--primary);
-    }
+      .stat-card-icon {
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--surface-container-lowest);
+        border-radius: var(--radius-lg);
+      }
 
-    .stat-card-content {
-      display: flex;
-      flex-direction: column;
-    }
+      .stat-card-icon .material-symbols-outlined {
+        font-size: 1.5rem;
+        color: var(--primary);
+      }
 
-    .stat-card-value {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--on-surface);
-    }
+      .stat-card-content {
+        display: flex;
+        flex-direction: column;
+      }
 
-    .stat-card-label {
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--on-surface-variant);
-    }
+      .stat-card-value {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--on-surface);
+      }
 
-    /* CRUD Section */
-    .crud-section {
-      background: var(--surface-container-high);
-      border: 1px solid var(--outline-variant);
-      border-radius: var(--radius-xl);
-      padding: 2rem;
-      margin-bottom: 3rem;
-    }
+      .stat-card-label {
+        font-size: 0.625rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--on-surface-variant);
+      }
 
-    .section-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--on-surface);
-      margin-bottom: 1.5rem;
-    }
+      /* CRUD Section */
+      .crud-section {
+        background: var(--surface-container-high);
+        border: 1px solid var(--outline-variant);
+        border-radius: var(--radius-xl);
+        padding: 2rem;
+        margin-bottom: 3rem;
+      }
 
-    .crud-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
+      .section-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--on-surface);
+        margin-bottom: 1.5rem;
+      }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
+      .crud-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
 
-    @media (min-width: 640px) {
-      .form-row { grid-template-columns: repeat(2, 1fr); }
-    }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+      @media (min-width: 640px) {
+        .form-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
 
-    .form-group label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--on-surface);
-    }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
 
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      padding: 0.75rem 1rem;
-      background: var(--surface-container-lowest);
-      border: 1px solid var(--outline-variant);
-      border-radius: var(--radius-md);
-      color: var(--on-surface);
-      font-size: 0.875rem;
-    }
+      .form-group label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--on-surface);
+      }
 
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        padding: 0.75rem 1rem;
+        background: var(--surface-container-lowest);
+        border: 1px solid var(--outline-variant);
+        border-radius: var(--radius-md);
+        color: var(--on-surface);
+        font-size: 0.875rem;
+      }
 
-    .btn {
-      padding: 0.75rem 1.5rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      border-radius: var(--radius-lg);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      border: none;
-    }
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
 
-    .btn-primary {
-      background: var(--primary);
-      color: var(--on-primary);
-    }
+      .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        border-radius: var(--radius-lg);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: none;
+      }
 
-    .btn-primary:hover:not(:disabled) {
-      filter: brightness(1.1);
-    }
+      .btn-primary {
+        background: var(--primary);
+        color: var(--on-primary);
+      }
 
-    .btn-primary:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
+      .btn-primary:hover:not(:disabled) {
+        filter: brightness(1.1);
+      }
 
-    .message {
-      padding: 0.75rem 1rem;
-      border-radius: var(--radius-md);
-      font-size: 0.875rem;
-    }
+      .btn-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
 
-    .message.success {
-      background: rgba(34, 197, 94, 0.1);
-      color: #22c55e;
-    }
+      .message {
+        padding: 0.75rem 1rem;
+        border-radius: var(--radius-md);
+        font-size: 0.875rem;
+      }
 
-    .message.error {
-      background: rgba(239, 68, 68, 0.1);
-      color: #ef4444;
-    }
+      .message.success {
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
+      }
 
-    /* Table */
-    .admin-table-wrapper {
-      background: var(--surface-container-high);
-      border: 1px solid var(--outline-variant);
-      border-radius: var(--radius-xl);
-      padding: 2rem;
-    }
+      .message.error {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+      }
 
-    .table-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--on-surface);
-      margin-bottom: 1.5rem;
-    }
+      /* Table */
+      .admin-table-wrapper {
+        background: var(--surface-container-high);
+        border: 1px solid var(--outline-variant);
+        border-radius: var(--radius-xl);
+        padding: 2rem;
+      }
 
-    .table-filters {
-      margin-bottom: 1.5rem;
-    }
+      .table-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--on-surface);
+        margin-bottom: 1.5rem;
+      }
 
-    .table-search {
-      padding: 0.625rem 1rem;
-      background: var(--surface-container-lowest);
-      border: 1px solid var(--outline-variant);
-      border-radius: var(--radius-md);
-      color: var(--on-surface);
-      font-size: 0.875rem;
-      width: 100%;
-      max-width: 16rem;
-    }
+      .table-filters {
+        margin-bottom: 1.5rem;
+      }
 
-    .table-search:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
+      .table-search {
+        padding: 0.625rem 1rem;
+        background: var(--surface-container-lowest);
+        border: 1px solid var(--outline-variant);
+        border-radius: var(--radius-md);
+        color: var(--on-surface);
+        font-size: 0.875rem;
+        width: 100%;
+        max-width: 16rem;
+      }
 
-    .admin-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+      .table-search:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
 
-    .admin-table th {
-      text-align: left;
-      padding: 1rem;
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--on-surface-variant);
-      border-bottom: 1px solid var(--outline-variant);
-    }
+      .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
 
-    .admin-table td {
-      padding: 1rem;
-      border-bottom: 1px solid var(--outline-variant);
-    }
+      .admin-table th {
+        text-align: left;
+        padding: 1rem;
+        font-size: 0.625rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--on-surface-variant);
+        border-bottom: 1px solid var(--outline-variant);
+      }
 
-    .agent-cell {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
+      .admin-table td {
+        padding: 1rem;
+        border-bottom: 1px solid var(--outline-variant);
+      }
 
-    .agent-name {
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: var(--on-surface);
-    }
+      .agent-cell {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
 
-    .agent-desc {
-      font-size: 0.75rem;
-      color: var(--on-surface-variant);
-      max-width: 20rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+      .agent-name {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--on-surface);
+      }
 
-    .category-badge,
-    .platform-badge {
-      display: inline-block;
-      padding: 0.25rem 0.5rem;
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      background: var(--surface-container-lowest);
-      border-radius: var(--radius-default);
-    }
+      .agent-desc {
+        font-size: 0.75rem;
+        color: var(--on-surface-variant);
+        max-width: 20rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
-    .status-badge {
-      display: inline-block;
-      padding: 0.25rem 0.5rem;
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      border-radius: var(--radius-default);
-    }
+      .category-badge,
+      .platform-badge {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.625rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        background: var(--surface-container-lowest);
+        border-radius: var(--radius-default);
+      }
 
-    .status-badge.active {
-      background: rgba(34, 197, 94, 0.1);
-      color: #22c55e;
-    }
+      .status-badge {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.625rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border-radius: var(--radius-default);
+      }
 
-    .status-badge.coming {
-      background: rgba(100, 116, 139, 0.1);
-      color: #64748b;
-    }
+      .status-badge.active {
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
+      }
 
-    .status-badge.beta {
-      background: rgba(180, 197, 255, 0.1);
-      color: var(--primary);
-    }
+      .status-badge.coming {
+        background: rgba(100, 116, 139, 0.1);
+        color: #64748b;
+      }
 
-    .action-buttons {
-      display: flex;
-      gap: 0.5rem;
-    }
+      .status-badge.beta {
+        background: rgba(180, 197, 255, 0.1);
+        color: var(--primary);
+      }
 
-    .action-btn {
-      padding: 0.5rem;
-      background: transparent;
-      border: 1px solid var(--outline-variant);
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+      .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+      }
 
-    .action-btn:hover {
-      background: var(--surface-bright);
-    }
+      .action-btn {
+        padding: 0.5rem;
+        background: transparent;
+        border: 1px solid var(--outline-variant);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-    .action-btn.delete:hover {
-      background: rgba(239, 68, 68, 0.1);
-      border-color: #ef4444;
-    }
+      .action-btn:hover {
+        background: var(--surface-bright);
+      }
 
-    .action-btn.delete:hover .material-symbols-outlined {
-      color: #ef4444;
-    }
+      .action-btn.delete:hover {
+        background: rgba(239, 68, 68, 0.1);
+        border-color: #ef4444;
+      }
 
-    .action-btn.active .material-symbols-outlined {
-      color: #ef4444;
-      font-variation-settings: 'FILL' 1;
-    }
+      .action-btn.delete:hover .material-symbols-outlined {
+        color: #ef4444;
+      }
 
-    .action-btn .material-symbols-outlined {
-      font-size: 1rem;
-      color: var(--on-surface-variant);
-    }
-  `]
+      .action-btn.active .material-symbols-outlined {
+        color: #ef4444;
+        font-variation-settings: 'FILL' 1;
+      }
+
+      .action-btn .material-symbols-outlined {
+        font-size: 1rem;
+        color: var(--on-surface-variant);
+      }
+    `,
+  ],
 })
 export class Admin {
   searchQuery = '';
   platformInput = '';
   private favoritesService = inject(FavoritesService);
-  
+
   // Form state
   isCreating = signal(false);
   message = signal('');
   messageType = signal<'success' | 'error'>('success');
-  
+
   newService = {
     name: '',
     shortDescription: '',
     fullDescription: '',
     category: '',
     statusType: 'active' as const,
-    featured: false
+    featured: false,
   };
 
   // Stats using computed
   totalServices = computed(() => services().length);
   favoritesCount = () => this.favoritesService.count();
-  activeAgents = computed(() => services().filter(s => s.statusType === 'active').length);
-  comingSoon = computed(() => services().filter(s => s.statusType === 'coming').length);
-  
+  activeAgents = computed(() => services().filter((s) => s.statusType === 'active').length);
+  comingSoon = computed(() => services().filter((s) => s.statusType === 'coming').length);
+
   filteredServices = () => {
     const q = this.searchQuery.toLowerCase();
     if (!q) return services();
-    return services().filter(s => 
-      s.name.toLowerCase().includes(q) || 
-      s.category.toLowerCase().includes(q)
+    return services().filter(
+      (s) => s.name.toLowerCase().includes(q) || s.category.toLowerCase().includes(q),
     );
   };
-  
+
   isFavorite = (id: string) => this.favoritesService.isFavorite(id);
-  
+
   toggleFavorite(id: string): void {
     this.favoritesService.toggle(id);
   }
-  
+
   createService(): void {
-    if (!this.newService.name || !this.newService.shortDescription || !this.newService.fullDescription || !this.newService.category || !this.platformInput) {
+    if (
+      !this.newService.name ||
+      !this.newService.shortDescription ||
+      !this.newService.fullDescription ||
+      !this.newService.category ||
+      !this.platformInput
+    ) {
       this.message.set('Por favor complete todos los campos');
       this.messageType.set('error');
       return;
     }
-    
+
     this.isCreating.set(true);
-    
+
     try {
-      const platforms = this.platformInput.split(',').map(p => p.trim()).filter(p => p);
-      
+      const platforms = this.platformInput
+        .split(',')
+        .map((p) => p.trim())
+        .filter((p) => p);
+
       addService({
         name: this.newService.name,
         shortDescription: this.newService.shortDescription,
@@ -656,18 +727,23 @@ export class Admin {
         platformIcon: 'smart_toy',
         deliverables: ['Custom Deliverable'],
         steps: [
-          { step: "01", title: "Setup", icon: "settings" },
-          { step: "02", title: "Configure", icon: "tune" },
-          { step: "03", title: "Deploy", icon: "rocket_launch" }
+          { step: '01', title: 'Setup', icon: 'settings' },
+          { step: '02', title: 'Configure', icon: 'tune' },
+          { step: '03', title: 'Deploy', icon: 'rocket_launch' },
         ],
-        testimonial: "New service added via admin panel.",
-        status: this.newService.statusType === 'active' ? 'Active Agent' : this.newService.statusType === 'beta' ? 'Beta Access' : 'Coming Soon',
+        testimonial: 'New service added via admin panel.',
+        status:
+          this.newService.statusType === 'active'
+            ? 'Active Agent'
+            : this.newService.statusType === 'beta'
+              ? 'Beta Access'
+              : 'Coming Soon',
         statusType: this.newService.statusType,
         image: '',
         category: this.newService.category,
-        featured: this.newService.featured
+        featured: this.newService.featured,
       });
-      
+
       // Reset form
       this.newService = {
         name: '',
@@ -675,10 +751,10 @@ export class Admin {
         fullDescription: '',
         category: '',
         statusType: 'active',
-        featured: false
+        featured: false,
       };
       this.platformInput = '';
-      
+
       this.message.set('Servicio creado exitosamente!');
       this.messageType.set('success');
     } catch (error) {
@@ -688,7 +764,7 @@ export class Admin {
       this.isCreating.set(false);
     }
   }
-  
+
   deleteService(id: string): void {
     if (confirm('¿Está seguro que desea eliminar este servicio?')) {
       const deleted = removeService(id);
